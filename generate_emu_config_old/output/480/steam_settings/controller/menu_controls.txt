@@ -1,6 +1,0 @@
-menu_select=A
-menu_cancel=B
-menu_up=DLJOYUP
-menu_down=DLJOYDOWN
-menu_right=DLJOYRIGHT
-menu_left=DLJOYLEFT
