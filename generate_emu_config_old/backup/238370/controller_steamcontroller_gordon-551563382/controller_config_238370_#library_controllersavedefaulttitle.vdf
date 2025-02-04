@@ -1,0 +1,561 @@
+"controller_mappings"
+{
+	"version"		"2"
+	"title"		"#Library_ControllerSaveDefaultTitle"
+	"description"		"#Library_ControllerSaveDefaultDescription"
+	"creator"		"76561197995653544"
+	"actions"
+	{
+		"Menu"
+		{
+			"title"		"#Set_Menu"
+			"StickPadGyro"
+			{
+				"Move"
+				{
+					"title"		"#Menu_Move"
+					"input_mode"		"joystick_move"
+				}
+			}
+			"Button"
+			{
+				"confirm"		"#Menu_Confirm"
+				"Back"		"#Menu_Back"
+				"sign_out"		"#Menu_SignOut"
+				"skip"		"#Menu_Skip"
+				"edit"		"#Menu_Edit"
+				"nav_prev"		"#Menu_NavPrev"
+				"nav_next"		"#Menu_NavNext"
+				"nav_prev_inner"		"#Menu_NavPrevInner"
+				"nav_next_inner"		"#Menu_NavNextInner"
+				"nav_left"		"#Menu_NavLeft"
+				"nav_right"		"#Menu_NavRight"
+				"nav_up"		"#Menu_NavUp"
+				"nav_down"		"#Menu_NavDown"
+				"refresh"		"#Menu_Refresh"
+				"toggle_private_session"		"#Menu_TogglePrivateSession"
+				"invite_player"		"#Menu_InvitePlayer"
+				"select_player_slots"		"#Menu_SelectPlayerSlots"
+			}
+		}
+		"In-Game"
+		{
+			"title"		"#Set_InGame"
+			"StickPadGyro"
+			{
+				"Move"
+				{
+					"title"		"#Game_Move"
+					"input_mode"		"joystick_move"
+				}
+				"direction"
+				{
+					"title"		"#Game_Direction"
+					"input_mode"		"joystick_move"
+				}
+			}
+			"Button"
+			{
+				"fire"		"#Game_Fire"
+				"cold"		"#Game_Cold"
+				"arcane"		"#Game_Arcane"
+				"life"		"#Game_Life"
+				"earth"		"#Game_Earth"
+				"lightning"		"#Game_Lightning"
+				"shield"		"#Game_Shield"
+				"water"		"#Game_Water"
+				"element_switch"		"#Game_ElementSwitch"
+				"open_magick_menu1"		"#Game_OpenQuickslotMenu1"
+				"open_magick_menu2"		"#Game_OpenQuickslotMenu2"
+				"open_magick_menu3"		"#Game_OpenQuickslotMenu3"
+				"open_magick_menu4"		"#Game_OpenQuickslotMenu4"
+				"melee_attack"		"#Game_MeleeAttack"
+				"imbue_weapon"		"#Game_ImbueWeapon"
+				"twist_free"		"#Game_TwistFree"
+				"spell_self"		"#Game_CastSpellSelf"
+				"spell_aoe"		"#Game_CastSpellAoE"
+				"Activate"		"#Game_Activate"
+				"use_magick1"		"#Game_UseQuickslot1"
+				"use_magick2"		"#Game_UseQuickslot2"
+				"use_magick3"		"#Game_UseQuickslot3"
+				"use_magick4"		"#Game_UseQuickslot4"
+				"request_revive"		"#Game_RequestRevive"
+				"confirm"		"#Game_Confirm"
+				"Back"		"#Game_Back"
+				"select_magick_template"		"#Game_SelectMagickTemplate"
+				"deselect_magick_template"		"#Game_DeselectMagickTemplate"
+				"pause"		"#Game_Pause"
+				"skip"		"#Menu_Skip"
+			}
+		}
+	}
+	"localization"
+	{
+		"english"
+		{
+			"Set_General"		"General Controls"
+			"Game_Move"		"Movement"
+			"Game_Direction"		"Direction/Forward Cast"
+			"Game_AoECast"		"Area Cast"
+			"Game_SelfCast"		"Self Cast"
+			"Game_MeleeAttack"		"Melee Attack/Cast Magick"
+			"Game_Fire"		"Fire"
+			"Game_Cold"		"Cold"
+			"Game_Arcane"		"Arcane"
+			"Game_Life"		"Life"
+			"Game_Earth"		"Earth"
+			"Game_Lightning"		"Lightning"
+			"Game_Shield"		"Shield"
+			"Game_Water"		"Water"
+			"Set_Menu"		"Menu Controls"
+			"Set_InGame"		"In-Game Controls"
+			"Menu_Move"		"Navigate"
+			"Menu_Confirm"		"Confirm"
+			"Menu_Back"		"Back"
+			"Menu_SignOut"		"Sign Out"
+			"Menu_Skip"		"Skip"
+			"Menu_Edit"		"Edit"
+			"Menu_NavPrev"		"Navigation Previous"
+			"Menu_NavNext"		"Navigation Next"
+			"Menu_NavPrevInner"		"Navigation Previous (Inner)"
+			"Menu_NavNextInner"		"Navigation Next (Inner)"
+			"Menu_NavLeft"		"Navigation Left"
+			"Menu_NavRight"		"Navigation Right"
+			"Menu_NavUp"		"Navigation Up"
+			"Menu_NavDown"		"Navigation Down"
+			"Menu_Refresh"		"Refresh"
+			"Menu_TogglePrivateSession"		"Toggle Private Session"
+			"Menu_InvitePlayer"		"Invite Player"
+			"Menu_SelectPlayerSlots"		"Select Player Slots"
+			"#Game_ElementSwitch"		"Element Wheel Switch"
+			"#Game_OpenQuickslotMenu1"		"Open Quickslot Menu 1"
+			"#Game_OpenQuickslotMenu2"		"Open Quickslot Menu 2"
+			"#Game_OpenQuickslotMenu3"		"Open Quickslot Menu 3"
+			"#Game_OpenQuickslotMenu4"		"Open Quickslot Menu 4"
+			"#Game_CastMagick"		"Cast Magick"
+			"#Game_MeleeAttack"		"Melee Attack"
+			"#Game_ImbueWeapon"		"Imbue Weapon"
+			"#Game_TwistFree"		"Twist Free"
+			"#Game_CastSpellSelf"		"Cast Self"
+			"#Game_CastSpellAoE"		"Cast Area of Effect"
+			"#Game_Activate"		"Use"
+			"#Game_UseQuickslot1"		"Quickslot 1"
+			"#Game_UseQuickslot2"		"Quickslot 2"
+			"#Game_UseQuickslot3"		"Quickslot 3"
+			"#Game_UseQuickslot4"		"Quickslot 4"
+			"#Game_RequestRevive"		"Request Revive"
+			"#Game_Confirm"		"Confirm"
+			"#Game_Back"		"Back"
+			"#Game_SelectMagickTemplate"		"Select as Magick Template"
+			"#Game_DeselectMagickTemplate"		"Deselect Magick Template"
+			"#Game_Pause"		"Pause/Menu"
+			"Game_ElementSwitch"		"Element Wheel Switch"
+			"Game_OpenQuickslotMenu1"		"Open Quickslot Menu 1"
+			"Game_OpenQuickslotMenu2"		"Open Quickslot Menu 2"
+			"Game_OpenQuickslotMenu3"		"Open Quickslot Menu 3"
+			"Game_OpenQuickslotMenu4"		"Open Quickslot Menu 4"
+			"Game_CastMagick"		"Cast Magick"
+			"Game_ImbueWeapon"		"Imbue Weapon"
+			"Game_TwistFree"		"Twist Free"
+			"Game_CastSpellSelf"		"Cast Self"
+			"Game_CastSpellAoE"		"Cast Area of Effect"
+			"Game_Activate"		"Interact"
+			"Game_UseQuickslot1"		"Quickslot 1"
+			"Game_UseQuickslot2"		"Quickslot 2"
+			"Game_UseQuickslot3"		"Quickslot 3"
+			"Game_UseQuickslot4"		"Quickslot 4"
+			"Game_RequestRevive"		"Request Revive"
+			"Game_Confirm"		"Confirm"
+			"Game_Back"		"Back"
+			"Game_SelectMagickTemplate"		"Select as Magick Template"
+			"Game_DeselectMagickTemplate"		"Deselect Magick Template"
+			"Game_Pause"		"Pause/Menu"
+		}
+	}
+	"group"
+	{
+		"id"		"0"
+		"mode"		"four_buttons"
+		"bindings"
+		{
+			"button_A"		"xinput_button A"
+			"button_B"		"xinput_button B"
+			"button_X"		"xinput_button X"
+			"button_Y"		"xinput_button Y"
+		}
+	}
+	"group"
+	{
+		"id"		"1"
+		"mode"		"dpad"
+		"bindings"
+		{
+			"dpad_north"		"key_press W"
+			"dpad_south"		"key_press S"
+			"dpad_east"		"key_press D"
+			"dpad_west"		"key_press A"
+		}
+		"settings"
+		{
+			"requires_click"		"0"
+		}
+	}
+	"group"
+	{
+		"id"		"2"
+		"mode"		"dpad"
+		"bindings"
+		{
+			"dpad_north"		"xinput_button DPAD_UP"
+			"dpad_south"		"xinput_button DPAD_DOWN"
+			"dpad_east"		"xinput_button DPAD_RIGHT"
+			"dpad_west"		"xinput_button DPAD_LEFT"
+		}
+	}
+	"group"
+	{
+		"id"		"3"
+		"mode"		"absolute_mouse"
+	}
+	"group"
+	{
+		"id"		"4"
+		"mode"		"trigger"
+		"settings"
+		{
+			"output_trigger"		"1"
+		}
+	}
+	"group"
+	{
+		"id"		"5"
+		"mode"		"trigger"
+		"settings"
+		{
+			"output_trigger"		"2"
+		}
+	}
+	"group"
+	{
+		"id"		"6"
+		"mode"		"joystick_move"
+	}
+	"group"
+	{
+		"id"		"7"
+		"mode"		"joystick_move"
+		"settings"
+		{
+			"output_joystick"		"1"
+		}
+	}
+	"group"
+	{
+		"id"		"8"
+		"mode"		"four_buttons"
+		"bindings"
+		{
+			"button_A"		"xinput_button A"
+			"button_B"		"xinput_button B"
+			"button_X"		"xinput_button X"
+			"button_Y"		"xinput_button Y"
+		}
+	}
+	"group"
+	{
+		"id"		"9"
+		"mode"		"joystick_move"
+	}
+	"group"
+	{
+		"id"		"10"
+		"mode"		"four_buttons"
+	}
+	"group"
+	{
+		"id"		"11"
+		"mode"		"four_buttons"
+	}
+	"group"
+	{
+		"id"		"12"
+		"mode"		"trigger"
+	}
+	"group"
+	{
+		"id"		"13"
+		"mode"		"trigger"
+	}
+	"group"
+	{
+		"id"		"14"
+		"mode"		"four_buttons"
+		"bindings"
+		{
+			"button_A"		"game_action Menu confirm"
+			"button_B"		"game_action Menu Back"
+			"button_X"		"game_action Menu edit"
+			"button_X"		"game_action Menu invite_player"
+			"button_X"		"game_action Menu skip"
+			"button_Y"		"game_action Menu select_player_slots"
+		}
+	}
+	"group"
+	{
+		"id"		"15"
+		"mode"		"trigger"
+		"bindings"
+		{
+			"click"		"game_action Menu nav_prev_inner"
+		}
+	}
+	"group"
+	{
+		"id"		"16"
+		"mode"		"trigger"
+		"bindings"
+		{
+			"edge"		"game_action Menu nav_next_inner"
+			"edge"		"game_action Menu refresh"
+			"edge"		"game_action Menu toggle_private_session"
+		}
+	}
+	"group"
+	{
+		"id"		"17"
+		"mode"		"four_buttons"
+		"bindings"
+		{
+			"button_A"		"game_action In-Game skip"
+			"button_A"		"game_action In-Game confirm"
+			"button_A"		"game_action In-Game request_revive"
+			"button_A"		"game_action In-Game fire"
+			"button_B"		"game_action In-Game earth"
+			"button_B"		"game_action In-Game Back"
+			"button_X"		"game_action In-Game lightning"
+			"button_X"		"game_action In-Game select_magick_template"
+			"button_Y"		"game_action In-Game arcane"
+			"button_Y"		"game_action In-Game deselect_magick_template"
+		}
+	}
+	"group"
+	{
+		"id"		"18"
+		"mode"		"trigger"
+		"bindings"
+		{
+			"edge"		"game_action In-Game spell_aoe"
+		}
+	}
+	"group"
+	{
+		"id"		"19"
+		"mode"		"trigger"
+		"bindings"
+		{
+			"edge"		"game_action In-Game melee_attack"
+			"edge"		"game_action In-Game imbue_weapon"
+			"edge"		"game_action In-Game twist_free"
+		}
+	}
+	"group"
+	{
+		"id"		"20"
+		"mode"		"joystick_move"
+		"settings"
+		{
+			"virtual_mode"		"1"
+		}
+		"gameactions"
+		{
+			"In-Game"		"Move"
+		}
+	}
+	"group"
+	{
+		"id"		"21"
+		"mode"		"joystick_move"
+		"settings"
+		{
+			"virtual_mode"		"1"
+		}
+		"gameactions"
+		{
+			"In-Game"		"direction"
+		}
+	}
+	"group"
+	{
+		"id"		"22"
+		"mode"		"joystick_move"
+		"settings"
+		{
+			"virtual_mode"		"1"
+		}
+		"gameactions"
+		{
+			"Menu"		"Move"
+		}
+	}
+	"group"
+	{
+		"id"		"23"
+		"mode"		"dpad"
+	}
+	"group"
+	{
+		"id"		"24"
+		"mode"		"dpad"
+		"bindings"
+		{
+			"dpad_north"		"game_action Menu nav_up"
+			"dpad_south"		"game_action Menu nav_down"
+			"dpad_east"		"game_action Menu nav_right"
+			"dpad_west"		"game_action Menu nav_left"
+		}
+	}
+	"group"
+	{
+		"id"		"25"
+		"mode"		"dpad"
+		"bindings"
+		{
+			"dpad_north"		"game_action In-Game use_magick2"
+			"dpad_south"		"game_action In-Game use_magick4"
+			"dpad_east"		"game_action In-Game use_magick3"
+			"dpad_west"		"game_action In-Game use_magick1"
+		}
+	}
+	"group"
+	{
+		"id"		"26"
+		"mode"		"dpad"
+	}
+	"group"
+	{
+		"id"		"27"
+		"mode"		"four_buttons"
+		"bindings"
+		{
+			"button_A"		"game_action In-Game cold"
+			"button_B"		"game_action In-Game shield"
+			"button_X"		"game_action In-Game water"
+			"button_Y"		"game_action In-Game life"
+		}
+	}
+	"group"
+	{
+		"id"		"28"
+		"mode"		"dpad"
+		"bindings"
+		{
+			"dpad_north"		"game_action In-Game open_magick_menu2"
+			"dpad_south"		"game_action In-Game open_magick_menu4"
+			"dpad_east"		"game_action In-Game open_magick_menu3"
+			"dpad_west"		"game_action In-Game open_magick_menu1"
+		}
+	}
+	"group"
+	{
+		"id"		"29"
+		"mode"		"touch_menu"
+		"settings"
+		{
+			"touch_menu_button_count"		"2"
+		}
+	}
+	"group"
+	{
+		"id"		"30"
+		"mode"		"joystick_move"
+		"settings"
+		{
+			"virtual_mode"		"1"
+		}
+		"gameactions"
+		{
+			"In-Game"		"direction"
+		}
+	}
+	"preset"
+	{
+		"id"		"0"
+		"name"		"General"
+		"group_source_bindings"
+		{
+			"11"		"button_diamond active"
+			"12"		"left_trigger active"
+			"13"		"right_trigger active"
+		}
+		"switch_bindings"
+		{
+			"bindings"
+			{
+			}
+		}
+		"settings"
+		{
+		}
+	}
+	"preset"
+	{
+		"id"		"1"
+		"name"		"Menu"
+		"group_source_bindings"
+		{
+			"14"		"button_diamond active"
+			"15"		"left_trigger active"
+			"16"		"right_trigger active"
+			"24"		"left_trackpad active"
+			"22"		"joystick active"
+			"23"		"joystick inactive"
+		}
+		"switch_bindings"
+		{
+			"bindings"
+			{
+				"button_menu"		"game_action Menu sign_out"
+				"right_bumper"		"game_action Menu nav_next"
+				"left_bumper"		"game_action Menu nav_prev"
+				"left_bumper"		"game_action Menu nav_prev"
+			}
+		}
+		"settings"
+		{
+		}
+	}
+	"preset"
+	{
+		"id"		"2"
+		"name"		"In-Game"
+		"group_source_bindings"
+		{
+			"17"		"button_diamond active"
+			"26"		"button_diamond inactive modeshift"
+			"27"		"button_diamond active modeshift"
+			"18"		"left_trigger active"
+			"19"		"right_trigger active"
+			"25"		"left_trackpad active"
+			"28"		"left_trackpad active modeshift"
+			"20"		"joystick active"
+			"21"		"right_trackpad active"
+			"29"		"right_trackpad inactive"
+			"30"		"gyro inactive"
+		}
+		"switch_bindings"
+		{
+			"bindings"
+			{
+				"right_bumper"		"game_action In-Game spell_self"
+				"button_escape"		"game_action In-Game pause"
+				"left_bumper"		"game_action In-Game Activate"
+				"button_back_left"		"game_action In-Game element_switch"
+				"button_back_left"		"mode_shift button_diamond 27"
+				"button_back_left"		"mode_shift left_trackpad 28"
+			}
+		}
+		"settings"
+		{
+		}
+	}
+}

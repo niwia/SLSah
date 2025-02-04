@@ -1,0 +1,3 @@
+pause_menu=START
+fire_lasers=DRTRIGGER
+analog_controls=LJOY=joystick_move

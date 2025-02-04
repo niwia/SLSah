@@ -1,0 +1,74 @@
+publishedfiledetails {
+  result: 1
+  publishedfileid: 1761888411
+  creator: 76561198078024435
+  creator_appid: 241100
+  consumer_appid: 241100
+  consumer_shortcutid: 0
+  filename: "1761888411_controller_config.vdf"
+  file_size: 9119
+  preview_file_size: 0
+  file_url: "https://steamusercontent-a.akamaihd.net/ugc/797614364640018072/EE1DD64FD6CAC7FF698E3647668837F55DCA794A/"
+  preview_url: ""
+  url: ""
+  hcontent_file: 797614364640018072
+  hcontent_preview: 18446744073709551615
+  title: "#Library_ControllerSaveDefaultTitle"
+  short_description: "#Library_ControllerSaveDefaultDescription"
+  time_created: 1559770834
+  time_updated: 1559770834
+  visibility: 0
+  flags: 1536
+  workshop_file: false
+  workshop_accepted: false
+  show_subscribe_all: false
+  num_comments_public: 0
+  banned: false
+  ban_reason: ""
+  banner: 76561197960265728
+  can_be_deleted: true
+  app_name: "Steam Input Configs"
+  file_type: 12
+  can_subscribe: true
+  subscriptions: 4780851
+  favorited: 0
+  followers: 0
+  lifetime_subscriptions: 4780852
+  lifetime_favorited: 0
+  lifetime_followers: 0
+  views: 13
+  num_children: 0
+  num_reports: 0
+  tags {
+    tag: "hasactivators"
+    display_name: "hasactivators"
+  }
+  tags {
+    tag: "splitconfig"
+    display_name: "splitconfig"
+  }
+  tags {
+    tag: "controller_xboxone"
+    display_name: "controller_xboxone"
+  }
+  tags {
+    tag: "GenericXInput"
+    display_name: "GenericXInput"
+  }
+  tags {
+    tag: "controller_native"
+    display_name: "controller_native"
+  }
+  tags {
+    tag: "feature_actionset"
+    display_name: "feature_actionset"
+  }
+  language: 0
+  lifetime_playtime: 67724208584
+  lifetime_playtime_sessions: 17165097
+  maybe_inappropriate_sex: false
+  maybe_inappropriate_violence: false
+  revision_change_number: 0
+  revision: k_EPublishedFileRevision_Latest
+  ban_text_check_result: k_EBanContentCheckResult_NotScanned
+}

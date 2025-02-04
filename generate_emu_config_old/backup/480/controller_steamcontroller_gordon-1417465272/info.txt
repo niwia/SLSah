@@ -1,0 +1,70 @@
+publishedfiledetails {
+  result: 1
+  publishedfileid: 1417465272
+  creator: 76561197969363440
+  creator_appid: 241100
+  consumer_appid: 241100
+  consumer_shortcutid: 0
+  filename: "1417465272_controller_config.vdf"
+  file_size: 8153
+  preview_file_size: 0
+  file_url: "https://steamusercontent-a.akamaihd.net/ugc/946201442187518041/BDBC0070B04FF09BF0C538C82DC8AAF60DE0E2AB/"
+  preview_url: ""
+  url: ""
+  hcontent_file: 946201442187518041
+  hcontent_preview: 18446744073709551615
+  title: "#Library_ControllerSaveDefaultTitle"
+  short_description: "#Library_ControllerSaveDefaultDescription"
+  time_created: 1529529959
+  time_updated: 1529529959
+  visibility: 0
+  flags: 1536
+  workshop_file: false
+  workshop_accepted: false
+  show_subscribe_all: false
+  num_comments_public: 0
+  banned: false
+  ban_reason: ""
+  banner: 76561197960265728
+  can_be_deleted: true
+  app_name: "Steam Input Configs"
+  file_type: 12
+  can_subscribe: true
+  subscriptions: 5569673
+  favorited: 0
+  followers: 0
+  lifetime_subscriptions: 5569674
+  lifetime_favorited: 0
+  lifetime_followers: 0
+  views: 14
+  num_children: 0
+  num_reports: 0
+  tags {
+    tag: "hasactivators"
+    display_name: "hasactivators"
+  }
+  tags {
+    tag: "controller_steamcontroller_gordon"
+    display_name: "controller_steamcontroller_gordon"
+  }
+  tags {
+    tag: "splitconfig"
+    display_name: "splitconfig"
+  }
+  tags {
+    tag: "controller_native"
+    display_name: "controller_native"
+  }
+  tags {
+    tag: "feature_actionset"
+    display_name: "feature_actionset"
+  }
+  language: 0
+  lifetime_playtime: 35470580378
+  lifetime_playtime_sessions: 7262101
+  maybe_inappropriate_sex: false
+  maybe_inappropriate_violence: false
+  revision_change_number: 0
+  revision: k_EPublishedFileRevision_Latest
+  ban_text_check_result: k_EBanContentCheckResult_NotScanned
+}

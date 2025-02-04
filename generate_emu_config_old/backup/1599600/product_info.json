@@ -1,0 +1,443 @@
+{
+  "appid": "1599600",
+  "common": {
+    "name": "PlateUp!",
+    "type": "Game",
+    "oslist": "windows",
+    "osarch": "",
+    "osextended": "",
+    "logo": "26f97a270c9e4716a7b253984ca8669bba2f863a",
+    "logo_small": "26f97a270c9e4716a7b253984ca8669bba2f863a_thumb",
+    "icon": "8ab51cc26c5b54c8858bf95538d71f728b460611",
+    "clienticon": "6cc2e797ba3f4f212c5987c99ecf4ba283930798",
+    "clienttga": "5a587903a883ae347d9bbfd9472ebd799ef4763e",
+    "releasestate": "released",
+    "name_localized": {
+      "schinese": "速速上菜！",
+      "tchinese": "速速上菜！",
+      "koreana": "플레이트업!",
+      "japanese": "プレートアップ！"
+    },
+    "languages": {
+      "english": "1",
+      "german": "1",
+      "french": "1",
+      "koreana": "1",
+      "spanish": "1",
+      "schinese": "1",
+      "tchinese": "1",
+      "russian": "1",
+      "japanese": "1",
+      "polish": "1",
+      "turkish": "1",
+      "brazilian": "1"
+    },
+    "steam_deck_compatibility": {
+      "category": "3",
+      "test_timestamp": "1662681600",
+      "tested_build_id": "9455410",
+      "tests": {
+        "0": {
+          "display": "4",
+          "token": "#SteamDeckVerified_TestResult_DefaultControllerConfigFullyFunctional"
+        },
+        "1": {
+          "display": "4",
+          "token": "#SteamDeckVerified_TestResult_ControllerGlyphsMatchDeckDevice"
+        },
+        "2": {
+          "display": "4",
+          "token": "#SteamDeckVerified_TestResult_InterfaceTextIsLegible"
+        },
+        "3": {
+          "display": "4",
+          "token": "#SteamDeckVerified_TestResult_DefaultConfigurationIsPerformant"
+        }
+      },
+      "configuration": {
+        "supported_input": "gamepad",
+        "requires_manual_keyboard_invoke": "0",
+        "requires_non_controller_launcher_nav": "0",
+        "primary_player_is_controller_slot_0": "0",
+        "non_deck_display_glyphs": "0",
+        "small_text": "0",
+        "requires_internet_for_setup": "0",
+        "requires_internet_for_singleplayer": "0",
+        "recommended_runtime": "proton-stable",
+        "requires_h264": "0",
+        "gamescope_frame_limiter_not_supported": "0"
+      }
+    },
+    "controller_support": "full",
+    "small_capsule": {
+      "english": "capsule_231x87.jpg",
+      "schinese": "capsule_231x87_schinese.jpg",
+      "tchinese": "capsule_231x87_tchinese.jpg",
+      "koreana": "capsule_231x87_koreana.jpg"
+    },
+    "header_image": {
+      "english": "header.jpg",
+      "schinese": "header_schinese.jpg",
+      "tchinese": "header_tchinese.jpg",
+      "koreana": "header_koreana.jpg"
+    },
+    "library_assets": {
+      "library_capsule": "en,zh-cn,zh-tw,ko",
+      "library_hero": "en",
+      "library_logo": "en,ko,zh-cn,zh-tw",
+      "logo_position": {
+        "pinned_position": "BottomLeft",
+        "width_pct": "73.61634980389326",
+        "height_pct": "100"
+      }
+    },
+    "library_assets_full": {
+      "library_capsule": {
+        "image": {
+          "english": "library_600x900.jpg",
+          "schinese": "library_600x900_schinese.jpg",
+          "tchinese": "library_600x900_tchinese.jpg",
+          "koreana": "library_600x900_koreana.jpg"
+        },
+        "image2x": {
+          "english": "library_600x900_2x.jpg",
+          "schinese": "library_600x900_schinese_2x.jpg",
+          "tchinese": "library_600x900_tchinese_2x.jpg",
+          "koreana": "library_600x900_koreana_2x.jpg"
+        }
+      },
+      "library_hero": {
+        "image": {
+          "english": "library_hero.jpg"
+        },
+        "image2x": {
+          "english": "library_hero_2x.jpg"
+        }
+      },
+      "library_logo": {
+        "image": {
+          "english": "logo.png",
+          "koreana": "logo_koreana.png",
+          "schinese": "logo_schinese.png",
+          "tchinese": "logo_tchinese.png"
+        },
+        "logo_position": {
+          "pinned_position": "BottomLeft",
+          "width_pct": "73.61634980389326",
+          "height_pct": "100"
+        },
+        "image2x": {
+          "english": "logo_2x.png",
+          "koreana": "logo_koreana_2x.png",
+          "schinese": "logo_schinese_2x.png",
+          "tchinese": "logo_tchinese_2x.png"
+        }
+      }
+    },
+    "store_asset_mtime": "1723038856",
+    "associations": {
+      "0": {
+        "type": "developer",
+        "name": "It's happening"
+      },
+      "1": {
+        "type": "publisher",
+        "name": "Yogscast Games"
+      },
+      "2": {
+        "type": "franchise",
+        "name": "Yogscast Games"
+      }
+    },
+    "primary_genre": "23",
+    "genres": {
+      "0": "1",
+      "1": "4",
+      "2": "23",
+      "3": "2"
+    },
+    "category": {
+      "category_2": "1",
+      "category_1": "1",
+      "category_9": "1",
+      "category_38": "1",
+      "category_39": "1",
+      "category_24": "1",
+      "category_44": "1",
+      "category_28": "1",
+      "category_33": "1",
+      "category_23": "1",
+      "category_43": "1",
+      "category_22": "1",
+      "category_45": "1",
+      "category_46": "1",
+      "category_30": "1",
+      "category_62": "1"
+    },
+    "supported_languages": {
+      "english": {
+        "supported": "true"
+      },
+      "french": {
+        "supported": "true"
+      },
+      "german": {
+        "supported": "true"
+      },
+      "spanish": {
+        "supported": "true"
+      },
+      "japanese": {
+        "supported": "true"
+      },
+      "polish": {
+        "supported": "true"
+      },
+      "brazilian": {
+        "supported": "true"
+      },
+      "russian": {
+        "supported": "true"
+      },
+      "schinese": {
+        "supported": "true"
+      },
+      "tchinese": {
+        "supported": "true"
+      },
+      "koreana": {
+        "supported": "true"
+      },
+      "turkish": {
+        "supported": "true"
+      }
+    },
+    "steam_release_date": "1659621689",
+    "community_visible_stats": "1",
+    "workshop_visible": "1",
+    "community_hub_visible": "1",
+    "gameid": "1599600",
+    "store_tags": {
+      "0": "1685",
+      "1": "12472",
+      "2": "3920",
+      "3": "3959",
+      "4": "1643",
+      "5": "3841",
+      "6": "1716",
+      "7": "4726",
+      "8": "5125",
+      "9": "4136",
+      "10": "7332",
+      "11": "597",
+      "12": "4840",
+      "13": "7481",
+      "14": "3843",
+      "15": "9",
+      "16": "42804",
+      "17": "4791",
+      "18": "4182",
+      "19": "19"
+    },
+    "review_score": "9",
+    "review_percentage": "95"
+  },
+  "extended": {
+    "developer": "It's happening",
+    "publisher": "Yogscast Games",
+    "homepage": "https://www.plateupgame.com"
+  },
+  "config": {
+    "installdir": "PlateUp",
+    "launch": {
+      "1": {
+        "executable": "PlateUp/PlateUp.exe",
+        "arguments": "-appid 1599600",
+        "description_loc": {
+          "english": "Launch"
+        },
+        "description": "Launch"
+      }
+    },
+    "uselaunchcommandline": "1"
+  },
+  "depots": {
+    "baselanguages": "english",
+    "workshopdepot": "1599600",
+    "1599601": {
+      "config": {
+        "oslist": "windows"
+      },
+      "manifests": {
+        "public": {
+          "gid": "3511304844048280730",
+          "size": "1394090112",
+          "download": "401764176"
+        },
+        "crash-fix-test": {
+          "gid": "3754009520993631004",
+          "size": "1394071616",
+          "download": "401544576"
+        },
+        "crossplaybeta": {
+          "gid": "6594253868093343203",
+          "size": "1397661267",
+          "download": "401897600"
+        }
+      },
+      "encryptedmanifests": {
+        "ch_pr": {
+          "gid": "36D567E3C6EDBF76DAE9537825B2FDE5",
+          "size": "F2BA04F6CF9DBBF0787861494F533A6A",
+          "download": "4A1B08395CE0C1C1C422D56D7363EE4C"
+        },
+        "chef": {
+          "gid": "FE64F23927880259A04CE8DB878D918A",
+          "size": "90B55476BAA2E495B2E587AF276718C5",
+          "download": "6B2E75D19C1D8663F0762C1F090E3DC1"
+        },
+        "development": {
+          "gid": "CE4A112CAC82A33E53AA298F2C529D37",
+          "size": "EAF100AEF364DC5AFD7937F6EBF0673E",
+          "download": "4D9C0240869BF08DAB124AC4731A2ECC"
+        },
+        "discordbetaaccess": {
+          "gid": "C0842BFE32F9F5C8CADD479E3B21E49E",
+          "size": "C346FF77F32785FDFAE4A835647F217F",
+          "download": "79018ADC6D516835369BE55B33D4CC8E"
+        },
+        "japan": {
+          "gid": "817B69EE9BD3090BEA5F225BC6E05ED5",
+          "size": "4EC9FEDE0FFE8596F4476172A0EF69E6",
+          "download": "7DEC42894D7187042A87C966E83FD73B"
+        },
+        "secret": {
+          "gid": "BEFDC25DD1BAB568E31EE4E264832F61",
+          "size": "C52474E52F801694CDB3725A0219C8A1",
+          "download": "CEEF42E455759C9D8D98807745A51DF8"
+        },
+        "creator": {
+          "gid": "1466323502A7DB72D4021991A4A9CFA8",
+          "size": "FE31C5D5087E9A314C5B0A8558E66D3B",
+          "download": "16E7D860E992B1D95C8CEF867797E93E"
+        },
+        "crossplaystaging": {
+          "gid": "B78FB53D3CB814D531A90BAD0E9EC1E3",
+          "size": "57CA11ABADFB2AE9184FD395FA1D221D",
+          "download": "00C6ED64019A1A53576C8C05E3979F87"
+        },
+        "playtest": {
+          "gid": "C6E4EB704BBF7ECDBA8F8552F51B9D12",
+          "size": "6482BB9F09AF187DD335DBC5C963BA79",
+          "download": "68B689343F81AF7401CB2CF8B1A4DF27"
+        },
+        "playtest2": {
+          "gid": "4522E87851833CEE8625443478AABE00",
+          "size": "C864E0496731294B4E07D6F9AABF7120",
+          "download": "18F24E98C694F5986E8226B08188FA83"
+        }
+      }
+    },
+    "1599602": {
+      "config": {
+        "oslist": "windows"
+      }
+    },
+    "branches": {
+      "public": {
+        "buildid": "15591994",
+        "timeupdated": "1725468206"
+      },
+      "ch_pr": {
+        "buildid": "10759092",
+        "pwdrequired": "1",
+        "timeupdated": "1678805610"
+      },
+      "chef": {
+        "buildid": "9251549",
+        "pwdrequired": "1",
+        "timeupdated": "1659606643"
+      },
+      "development": {
+        "buildid": "13189763",
+        "pwdrequired": "1",
+        "timeupdated": "1705444518"
+      },
+      "discordbetaaccess": {
+        "buildid": "9355221",
+        "pwdrequired": "1",
+        "timeupdated": "1661039040"
+      },
+      "japan": {
+        "buildid": "11468716",
+        "pwdrequired": "1",
+        "timeupdated": "1686754875"
+      },
+      "secret": {
+        "buildid": "12841040",
+        "pwdrequired": "1",
+        "timeupdated": "1701361864"
+      },
+      "crash-fix-test": {
+        "buildid": "15335463",
+        "description": "Test for Environment crash",
+        "timeupdated": "1723404695"
+      },
+      "creator": {
+        "buildid": "15548843",
+        "pwdrequired": "1",
+        "timeupdated": "1725050086"
+      },
+      "crossplaybeta": {
+        "buildid": "15776693",
+        "description": "branch dedicated for crossplay",
+        "timeupdated": "1727881044"
+      },
+      "crossplaystaging": {
+        "buildid": "15776693",
+        "pwdrequired": "1",
+        "timeupdated": "1726871838"
+      },
+      "playtest": {
+        "buildid": "15591994",
+        "pwdrequired": "1",
+        "timeupdated": "1725464710"
+      },
+      "playtest2": {
+        "buildid": "15776695",
+        "pwdrequired": "1",
+        "timeupdated": "1726871859"
+      }
+    }
+  },
+  "ufs": {
+    "quota": "100000000",
+    "maxnumfiles": "1000",
+    "savefiles": {
+      "0": {
+        "root": "WinAppDataLocalLow",
+        "path": "It's Happening/PlateUp",
+        "pattern": "*.plateupsave",
+        "recursive": "1"
+      }
+    },
+    "rootoverrides": {
+      "0": {
+        "root": "WinAppDataLocalLow",
+        "os": "Linux",
+        "oscompare": "=",
+        "useinstead": "LinuxHome",
+        "pathtransforms": {
+          "0": {
+            "find": "It's Happening/PlateUp",
+            "replace": ".config/unity3d/It's Happening/PlateUp"
+          }
+        }
+      }
+    }
+  },
+  "_missing_token": false,
+  "_change_number": 25512918,
+  "_sha": "cdfcc36ba29461619a05c8bc44aa9fa0bf94c8f1",
+  "_size": 10292
+}

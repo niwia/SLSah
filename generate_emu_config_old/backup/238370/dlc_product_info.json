@@ -1,0 +1,681 @@
+{
+  "353120": {
+    "appid": "353120",
+    "common": {
+      "name": "Magicka 2 - Midgård Interactive Map",
+      "type": "DLC",
+      "parent": "238370",
+      "releasestate": "released",
+      "oslist": "windows,macos,linux",
+      "associations": {},
+      "gameid": "353120",
+      "store_tags": {
+        "0": "19",
+        "1": "21"
+      }
+    },
+    "extended": {
+      "dlcforappid": "238370",
+      "mustownapptopurchase": "238370"
+    },
+    "_missing_token": false,
+    "_change_number": 11703200,
+    "_sha": "50879d4dbed29a65b730d0cf198abf6f71cdc4c1",
+    "_size": 373
+  },
+  "352870": {
+    "appid": "352870",
+    "common": {
+      "name": "Magicka 2 - Cultist Robe",
+      "type": "DLC",
+      "parent": "238370",
+      "releasestate": "released",
+      "oslist": "windows,macos,linux",
+      "associations": {},
+      "gameid": "352870",
+      "store_tags": {
+        "0": "19",
+        "1": "21"
+      }
+    },
+    "extended": {
+      "dlcforappid": "238370",
+      "mustownapptopurchase": "238370"
+    },
+    "_missing_token": false,
+    "_change_number": 11703200,
+    "_sha": "fad662e20e67f79a9edabd78d1247aee559cc1fb",
+    "_size": 361
+  },
+  "352871": {
+    "appid": "352871",
+    "common": {
+      "name": "Magicka 2 - Cultist Staff of Aeons",
+      "type": "DLC",
+      "parent": "238370",
+      "releasestate": "released",
+      "oslist": "windows,macos,linux",
+      "associations": {},
+      "gameid": "352871",
+      "store_tags": {
+        "0": "19",
+        "1": "21"
+      }
+    },
+    "extended": {
+      "dlcforappid": "238370",
+      "mustownapptopurchase": "238370"
+    },
+    "_missing_token": false,
+    "_change_number": 11703200,
+    "_sha": "61c2f7a06f8916871875dea23edaffc4217e7f82",
+    "_size": 371
+  },
+  "352872": {
+    "appid": "352872",
+    "common": {
+      "name": "Magicka 2 - Cultist Ritual Sword",
+      "type": "DLC",
+      "parent": "238370",
+      "releasestate": "released",
+      "oslist": "windows,macos,linux",
+      "associations": {},
+      "gameid": "352872",
+      "store_tags": {
+        "0": "19",
+        "1": "21"
+      }
+    },
+    "extended": {
+      "dlcforappid": "238370",
+      "mustownapptopurchase": "238370"
+    },
+    "_missing_token": false,
+    "_change_number": 11703200,
+    "_sha": "bdcbe5eb510a88631cdd60469bbd983960334f96",
+    "_size": 369
+  },
+  "352873": {
+    "appid": "352873",
+    "common": {
+      "name": "Magicka 2 - Epic Warlord Dragon Armor",
+      "type": "DLC",
+      "parent": "238370",
+      "releasestate": "released",
+      "oslist": "windows,macos,linux",
+      "metacritic_name": "Epic Warlord Dragon Armor",
+      "associations": {
+        "0": {
+          "type": "developer",
+          "name": "Pieces Interactive"
+        }
+      },
+      "primary_genre": "0",
+      "genres": {
+        "0": "1",
+        "1": "25"
+      },
+      "category": {
+        "category_1": "1",
+        "category_2": "1",
+        "category_9": "1",
+        "category_24": "1"
+      },
+      "supported_languages": {
+        "english": {
+          "supported": "true"
+        }
+      },
+      "gameid": "352873",
+      "store_tags": {
+        "0": "19",
+        "1": "21"
+      }
+    },
+    "extended": {
+      "dlcforappid": "238370",
+      "mustownapptopurchase": "238370",
+      "developer": "Pieces Interactive",
+      "homepage": "http://www.magicka2.com"
+    },
+    "_missing_token": false,
+    "_change_number": 11703200,
+    "_sha": "929f7839f5c81585fe36588305c6c554f36eb397",
+    "_size": 825
+  },
+  "352874": {
+    "appid": "352874",
+    "common": {
+      "name": "Magicka 2 - Epic Crystal Staff",
+      "type": "DLC",
+      "parent": "238370",
+      "releasestate": "released",
+      "oslist": "windows,macos,linux",
+      "associations": {},
+      "gameid": "352874",
+      "store_tags": {
+        "0": "19",
+        "1": "21"
+      }
+    },
+    "extended": {
+      "dlcforappid": "238370",
+      "mustownapptopurchase": "238370"
+    },
+    "_missing_token": false,
+    "_change_number": 11703200,
+    "_sha": "eb0adf52209d340b586da69901a08eda806fa1f2",
+    "_size": 367
+  },
+  "352875": {
+    "appid": "352875",
+    "common": {
+      "name": "Magicka 2 - Epic Soul Screecher Sword",
+      "type": "DLC",
+      "parent": "238370",
+      "releasestate": "released",
+      "oslist": "windows,macos,linux",
+      "associations": {},
+      "gameid": "352875",
+      "store_tags": {
+        "0": "19",
+        "1": "21"
+      }
+    },
+    "extended": {
+      "dlcforappid": "238370",
+      "mustownapptopurchase": "238370"
+    },
+    "_missing_token": false,
+    "_change_number": 11703200,
+    "_sha": "1560964ea3f6848d0c77ba28c49c32509c67722a",
+    "_size": 374
+  },
+  "343980": {
+    "appid": "343980",
+    "common": {
+      "name": "Magicka 2 - Ritual sickle",
+      "type": "DLC",
+      "parent": "238370",
+      "releasestate": "released",
+      "oslist": "windows,macos,linux",
+      "associations": {},
+      "gameid": "343980",
+      "store_tags": {
+        "0": "19",
+        "1": "21"
+      }
+    },
+    "extended": {
+      "dlcforappid": "238370",
+      "mustownapptopurchase": "238370"
+    },
+    "_missing_token": false,
+    "_change_number": 11703200,
+    "_sha": "8b2bf5ffba06701c26ac496f591ec3c3c4be05d8",
+    "_size": 362
+  },
+  "343981": {
+    "appid": "343981",
+    "common": {
+      "name": "Magicka 2 - Peace Treaty staff",
+      "type": "DLC",
+      "parent": "238370",
+      "releasestate": "released",
+      "oslist": "windows,macos,linux",
+      "associations": {},
+      "gameid": "343981",
+      "store_tags": {
+        "0": "19",
+        "1": "21"
+      }
+    },
+    "extended": {
+      "dlcforappid": "238370",
+      "mustownapptopurchase": "238370"
+    },
+    "_missing_token": false,
+    "_change_number": 11703200,
+    "_sha": "ac6c151d53eca02b3eeed5d14c2d2e28d13d5ee1",
+    "_size": 367
+  },
+  "343982": {
+    "appid": "343982",
+    "common": {
+      "name": "Magicka 2 - Warlock robe",
+      "type": "DLC",
+      "parent": "238370",
+      "releasestate": "released",
+      "oslist": "windows,macos,linux",
+      "associations": {},
+      "gameid": "343982",
+      "store_tags": {
+        "0": "19",
+        "1": "21"
+      }
+    },
+    "extended": {
+      "dlcforappid": "238370",
+      "mustownapptopurchase": "238370"
+    },
+    "_missing_token": false,
+    "_change_number": 11703200,
+    "_sha": "393e9d18a2d517195114c7a36502e762fd0577d6",
+    "_size": 361
+  },
+  "393830": {
+    "appid": "393830",
+    "common": {
+      "name": "Magicka 2: Gates of Midgård Challenge pack",
+      "type": "DLC",
+      "parent": "238370",
+      "releasestate": "released",
+      "oslist": "windows,macos,linux",
+      "metacritic_name": "Gates of Midgård Challenge pack",
+      "controller_support": "full",
+      "small_capsule": {
+        "english": "capsule_231x87.jpg"
+      },
+      "header_image": {
+        "english": "header.jpg"
+      },
+      "store_asset_mtime": "1441025201",
+      "associations": {
+        "0": {
+          "type": "developer",
+          "name": "Paradox Arctic"
+        },
+        "1": {
+          "type": "publisher",
+          "name": "Paradox Interactive"
+        }
+      },
+      "primary_genre": "1",
+      "genres": {
+        "0": "1",
+        "1": "25"
+      },
+      "category": {
+        "category_1": "1",
+        "category_2": "1",
+        "category_9": "1",
+        "category_24": "1",
+        "category_22": "1",
+        "category_29": "1",
+        "category_28": "1",
+        "category_45": "1",
+        "category_46": "1",
+        "category_62": "1"
+      },
+      "supported_languages": {
+        "english": {
+          "supported": "true",
+          "subtitles": "true"
+        },
+        "french": {
+          "supported": "true",
+          "subtitles": "true"
+        },
+        "italian": {
+          "supported": "true",
+          "subtitles": "true"
+        },
+        "german": {
+          "supported": "true",
+          "subtitles": "true"
+        },
+        "spanish": {
+          "supported": "true",
+          "subtitles": "true"
+        },
+        "polish": {
+          "supported": "true",
+          "subtitles": "true"
+        },
+        "brazilian": {
+          "supported": "true",
+          "subtitles": "true"
+        },
+        "russian": {
+          "supported": "true",
+          "subtitles": "true"
+        }
+      },
+      "steam_release_date": "1442329159",
+      "gameid": "393830",
+      "store_tags": {
+        "0": "19",
+        "1": "21"
+      },
+      "review_score": "5",
+      "review_percentage": "57"
+    },
+    "extended": {
+      "dlcforappid": "238370",
+      "mustownapptopurchase": "238370",
+      "developer": "Paradox Arctic",
+      "publisher": "Paradox Interactive",
+      "homepage": "http://www.magicka2.com",
+      "dlcavailableonstore": "1"
+    },
+    "_missing_token": false,
+    "_change_number": 23591175,
+    "_sha": "9607afea54a0337c63a1e6380dfb9634dec9eca6",
+    "_size": 1890
+  },
+  "393831": {
+    "appid": "393831",
+    "common": {
+      "name": "Magicka 2: Three Cardinals Robe Pack",
+      "type": "DLC",
+      "parent": "238370",
+      "releasestate": "released",
+      "oslist": "windows,macos,linux",
+      "metacritic_name": "Three Cardinals Robe Pack",
+      "controller_support": "full",
+      "small_capsule": {
+        "english": "capsule_231x87.jpg"
+      },
+      "header_image": {
+        "english": "header.jpg"
+      },
+      "store_asset_mtime": "1442330622",
+      "associations": {
+        "0": {
+          "type": "developer",
+          "name": "Paradox Arctic"
+        },
+        "1": {
+          "type": "publisher",
+          "name": "Paradox Interactive"
+        }
+      },
+      "primary_genre": "1",
+      "genres": {
+        "0": "1",
+        "1": "25"
+      },
+      "category": {
+        "category_1": "1",
+        "category_2": "1",
+        "category_9": "1",
+        "category_24": "1",
+        "category_22": "1",
+        "category_29": "1",
+        "category_28": "1",
+        "category_45": "1",
+        "category_46": "1",
+        "category_62": "1"
+      },
+      "supported_languages": {
+        "english": {
+          "supported": "true",
+          "subtitles": "true"
+        },
+        "french": {
+          "supported": "true",
+          "subtitles": "true"
+        },
+        "italian": {
+          "supported": "true",
+          "subtitles": "true"
+        },
+        "german": {
+          "supported": "true",
+          "subtitles": "true"
+        },
+        "spanish": {
+          "supported": "true",
+          "subtitles": "true"
+        },
+        "polish": {
+          "supported": "true",
+          "subtitles": "true"
+        },
+        "brazilian": {
+          "supported": "true",
+          "subtitles": "true"
+        },
+        "russian": {
+          "supported": "true",
+          "subtitles": "true"
+        }
+      },
+      "steam_release_date": "1442329163",
+      "gameid": "393831",
+      "store_tags": {
+        "0": "19",
+        "1": "21"
+      },
+      "review_score": "6",
+      "review_percentage": "78"
+    },
+    "extended": {
+      "dlcforappid": "238370",
+      "mustownapptopurchase": "238370",
+      "developer": "Paradox Arctic",
+      "publisher": "Paradox Interactive",
+      "homepage": "http://www.magicka2.com",
+      "dlcavailableonstore": "1"
+    },
+    "_missing_token": false,
+    "_change_number": 23591175,
+    "_sha": "95d39a23cc5f52d293dbf69bb44dbbaa80db281c",
+    "_size": 1876
+  },
+  "354390": {
+    "appid": "354390",
+    "common": {
+      "name": "Magicka 1 Orchestral soundtrack",
+      "type": "DLC",
+      "parent": "238370",
+      "releasestate": "released",
+      "oslist": "windows,macos,linux",
+      "associations": {},
+      "gameid": "354390",
+      "store_tags": {
+        "0": "19",
+        "1": "21"
+      }
+    },
+    "extended": {
+      "dlcforappid": "238370",
+      "mustownapptopurchase": "238370"
+    },
+    "_missing_token": false,
+    "_change_number": 11703200,
+    "_sha": "3586f1838f9737563075cf48b2b32f205299f82f",
+    "_size": 368
+  },
+  "414650": {
+    "appid": "414650",
+    "common": {
+      "name": "Magicka 2: Chirpy Staff",
+      "type": "DLC",
+      "parent": "238370",
+      "releasestate": "released",
+      "oslist": "windows,macos,linux",
+      "associations": {},
+      "gameid": "414650",
+      "store_tags": {
+        "0": "19",
+        "1": "21"
+      }
+    },
+    "extended": {
+      "dlcforappid": "238370",
+      "mustownapptopurchase": "238370"
+    },
+    "_missing_token": false,
+    "_change_number": 11703200,
+    "_sha": "3f23c089684a923f3fc771cea75374e2e2be4319",
+    "_size": 360
+  },
+  "414651": {
+    "appid": "414651",
+    "common": {
+      "name": "Magicka 2: Ice, Death and Fury",
+      "type": "DLC",
+      "parent": "238370",
+      "releasestate": "released",
+      "oslist": "windows,macos,linux",
+      "metacritic_name": "Magicka 2: Ice, Death and Fury",
+      "controller_support": "full",
+      "small_capsule": {
+        "english": "capsule_231x87.jpg"
+      },
+      "header_image": {
+        "english": "header.jpg"
+      },
+      "store_asset_mtime": "1448902168",
+      "associations": {
+        "0": {
+          "type": "developer",
+          "name": "Paradox Arctic"
+        },
+        "1": {
+          "type": "publisher",
+          "name": "Paradox Interactive"
+        }
+      },
+      "primary_genre": "1",
+      "genres": {
+        "0": "1",
+        "1": "25"
+      },
+      "category": {
+        "category_1": "1",
+        "category_2": "1",
+        "category_9": "1",
+        "category_24": "1",
+        "category_22": "1",
+        "category_29": "1",
+        "category_28": "1",
+        "category_33": "1",
+        "category_45": "1",
+        "category_46": "1",
+        "category_62": "1"
+      },
+      "supported_languages": {
+        "english": {
+          "supported": "true",
+          "subtitles": "true"
+        },
+        "french": {
+          "supported": "true",
+          "subtitles": "true"
+        },
+        "italian": {
+          "supported": "true",
+          "subtitles": "true"
+        },
+        "german": {
+          "supported": "true",
+          "subtitles": "true"
+        },
+        "spanish": {
+          "supported": "true",
+          "subtitles": "true"
+        },
+        "polish": {
+          "supported": "true",
+          "subtitles": "true"
+        },
+        "brazilian": {
+          "supported": "true",
+          "subtitles": "true"
+        },
+        "russian": {
+          "supported": "true",
+          "subtitles": "true"
+        }
+      },
+      "steam_release_date": "1450188029",
+      "gameid": "414651",
+      "store_tags": {
+        "0": "19",
+        "1": "21"
+      },
+      "review_score": "5",
+      "review_percentage": "64"
+    },
+    "extended": {
+      "dlcforappid": "238370",
+      "mustownapptopurchase": "238370",
+      "developer": "Paradox Arctic",
+      "publisher": "Paradox Interactive",
+      "homepage": "http://www.magicka2.com",
+      "dlcavailableonstore": "1"
+    },
+    "_missing_token": false,
+    "_change_number": 23591175,
+    "_sha": "8f4c921aed49c30c29947bc529ba5daad0186f5e",
+    "_size": 1897
+  },
+  "352860": {
+    "appid": "352860",
+    "public_only": "1",
+    "common": {
+      "name": "Magicka 2 - Headmaster Robe",
+      "section_type": "ownersonly",
+      "type": "DLC",
+      "parent": "238370",
+      "releasestate": "released",
+      "oslist": "windows,macos,linux",
+      "associations": {},
+      "gameid": "352860",
+      "store_tags": {
+        "0": "19",
+        "1": "21"
+      }
+    },
+    "_missing_token": true,
+    "_change_number": 11703200,
+    "_sha": "6e5b16940c2e17acb0f07fe577a3babd03aab36b",
+    "_size": 336
+  },
+  "352861": {
+    "appid": "352861",
+    "public_only": "1",
+    "common": {
+      "name": "Magicka 2 - Headmaster Sword",
+      "section_type": "ownersonly",
+      "type": "DLC",
+      "parent": "238370",
+      "releasestate": "released",
+      "oslist": "windows,macos,linux",
+      "associations": {},
+      "gameid": "352861",
+      "store_tags": {
+        "0": "19",
+        "1": "21"
+      }
+    },
+    "_missing_token": true,
+    "_change_number": 11703200,
+    "_sha": "2acb73b63bfcde936850e7f6bd4493c0316d9cc3",
+    "_size": 337
+  },
+  "352862": {
+    "appid": "352862",
+    "public_only": "1",
+    "common": {
+      "name": "Magicka 2 - Headmaster Staff",
+      "section_type": "ownersonly",
+      "type": "DLC",
+      "parent": "238370",
+      "releasestate": "released",
+      "oslist": "windows,macos,linux",
+      "associations": {},
+      "gameid": "352862",
+      "store_tags": {
+        "0": "19",
+        "1": "21"
+      }
+    },
+    "_missing_token": true,
+    "_change_number": 11703200,
+    "_sha": "369f6dcad4fa98e40d7285546576bcc3fcd4a34c",
+    "_size": 337
+  }
+}

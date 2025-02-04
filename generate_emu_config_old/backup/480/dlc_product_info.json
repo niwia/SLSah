@@ -1,0 +1,36 @@
+{
+  "447130": {
+    "appid": "447130",
+    "public_only": "1",
+    "common": {
+      "name": "ticket test DLC",
+      "section_type": "ownersonly",
+      "type": "DLC",
+      "parent": "480",
+      "releasestate": "released",
+      "exfgls": "1",
+      "oslist": "windows,macos,linux",
+      "associations": {},
+      "gameid": "447130"
+    },
+    "_missing_token": true,
+    "_change_number": 11703200,
+    "_sha": "68212bfd479aa0ba7b731fc6c59f7d1e0ec3044a",
+    "_size": 288
+  },
+  "110902": {
+    "appid": "110902",
+    "public_only": "1",
+    "common": {
+      "name": "pieterw test DLC",
+      "section_type": "ownersonly",
+      "type": "DLC",
+      "parent": "480",
+      "gameid": "110902"
+    },
+    "_missing_token": true,
+    "_change_number": 20193286,
+    "_sha": "bbb0d197df0654e1cb38be61c34b9038be876121",
+    "_size": 185
+  }
+}

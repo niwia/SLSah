@@ -1,0 +1,93 @@
+[
+  {
+    "name": "public",
+    "description": "",
+    "protected": false,
+    "build_id": 15591994,
+    "time_updated": 1725468206
+  },
+  {
+    "name": "ch_pr",
+    "description": "",
+    "protected": true,
+    "build_id": 10759092,
+    "time_updated": 1678805610
+  },
+  {
+    "name": "chef",
+    "description": "",
+    "protected": true,
+    "build_id": 9251549,
+    "time_updated": 1659606643
+  },
+  {
+    "name": "development",
+    "description": "",
+    "protected": true,
+    "build_id": 13189763,
+    "time_updated": 1705444518
+  },
+  {
+    "name": "discordbetaaccess",
+    "description": "",
+    "protected": true,
+    "build_id": 9355221,
+    "time_updated": 1661039040
+  },
+  {
+    "name": "japan",
+    "description": "",
+    "protected": true,
+    "build_id": 11468716,
+    "time_updated": 1686754875
+  },
+  {
+    "name": "secret",
+    "description": "",
+    "protected": true,
+    "build_id": 12841040,
+    "time_updated": 1701361864
+  },
+  {
+    "name": "crash-fix-test",
+    "description": "Test for Environment crash",
+    "protected": false,
+    "build_id": 15335463,
+    "time_updated": 1723404695
+  },
+  {
+    "name": "creator",
+    "description": "",
+    "protected": true,
+    "build_id": 15548843,
+    "time_updated": 1725050086
+  },
+  {
+    "name": "crossplaybeta",
+    "description": "branch dedicated for crossplay",
+    "protected": false,
+    "build_id": 15776693,
+    "time_updated": 1727881044
+  },
+  {
+    "name": "crossplaystaging",
+    "description": "",
+    "protected": true,
+    "build_id": 15776693,
+    "time_updated": 1726871838
+  },
+  {
+    "name": "playtest",
+    "description": "",
+    "protected": true,
+    "build_id": 15591994,
+    "time_updated": 1725464710
+  },
+  {
+    "name": "playtest2",
+    "description": "",
+    "protected": true,
+    "build_id": 15776695,
+    "time_updated": 1726871859
+  }
+]

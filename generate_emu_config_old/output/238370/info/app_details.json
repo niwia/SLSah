@@ -1,0 +1,381 @@
+{
+  "238370": {
+    "success": true,
+    "data": {
+      "type": "game",
+      "name": "Magicka 2",
+      "steam_appid": 238370,
+      "required_age": 0,
+      "is_free": false,
+      "controller_support": "full",
+      "dlc": [
+        393830,
+        393831,
+        414651
+      ],
+      "detailed_description": "<h1>Digital Deluxe Edition</h1><p><img src=\"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/extras/Decoration-Banner-DELUXE.png?t=1709831158\" /><h2 class=\"bb_tag\">Exclusive Deluxe Edition content:</h2><ul class=\"bb_ul\"><li>Warlord Robe Set<br></li><li>Magicka Orchestra Soundtrack<br></li><li>Digital Interactive Map<br></li><li>Cultist Robe Set</li></ul></p><br><h1>About the Game</h1>The world’s most irreverent co-op action adventure returns! In the next chapter of Magicka, players ascend from the ruins of Aldrheim to experience a Midgård almost wiped free of Wizards after the Wizard Wars, with the few that do remain having either gone mad or extremely hostile toward all others.<br><br>To rid the world of evil, again, up to four Wizards, and their guide Vlad, will traverse Midgård armed with the next iteration of the famous Magicka dynamic spellcasting system, as players reprise their roles as the most overpowered, unpredictably funny Wizards ever known to fantasy!<h2 class=\"bb_tag\">Learn to Spell Again... Again!</h2><br>Ye olde hybrid elements Steam and Ice from Magicka 1 are back, joined by the brand new Poison! This means tons of new spells to cast at friends and foes - complete with larger explosions and greatly improved graphics!<h2 class=\"bb_tag\">Learn to Spell Again</h2><br>As an all-powerful Wizard, you will have thousands of spells at your fingertips to experiment and defeat evil with, use them together with special Magicks to annihilate foes or give necessary aid to your companions.<br><ul class=\"bb_ul\"><li>Combine up to five elements at a time and work together with—or against—your friends for that full Magicka co-op experience.<br></li><li>Four Player Friendly Fire Compatible Co-op<br></li><li>Full co-op support! All levels and game modes in Magicka 2 will be supported for four player co-op with hot join, checkpoints, and other supportive features and functionality.<br></li><li>Friendly fire is always on, promoting emergent gameplay humor as players accidentally hurt or kill their friends in their attempts to annihilate enemies.</li></ul><h2 class=\"bb_tag\">Be the Wizard You Want to Be!</h2><br>With tons of robes, staffs, and weapons you can play as the robed Wizard of your choice to wreak havoc amongst hordes of fantasy creatures as you see fit. Magicka 2's dynamic spellcasting system can be used in many different ways, offering hours of experimentation for players to figure out which spells belong in their repertoire. Add both co-op and friendly fire on top of that and you have a recipe for hilarious disasters.<h2 class=\"bb_tag\">Replay the Next Chapter with Artifacts</h2><br>Magicka 2 offers players a story-driven campaign mode set in a lush fantasy world influenced heavily by Nordic folklore. New to the franchise are &quot;Artifacts,&quot; which act as different switches and options for players to customize and change the gameplay experience, adding more replayability when utilized.",
+      "about_the_game": "The world’s most irreverent co-op action adventure returns! In the next chapter of Magicka, players ascend from the ruins of Aldrheim to experience a Midgård almost wiped free of Wizards after the Wizard Wars, with the few that do remain having either gone mad or extremely hostile toward all others.<br><br>To rid the world of evil, again, up to four Wizards, and their guide Vlad, will traverse Midgård armed with the next iteration of the famous Magicka dynamic spellcasting system, as players reprise their roles as the most overpowered, unpredictably funny Wizards ever known to fantasy!<h2 class=\"bb_tag\">Learn to Spell Again... Again!</h2><br>Ye olde hybrid elements Steam and Ice from Magicka 1 are back, joined by the brand new Poison! This means tons of new spells to cast at friends and foes - complete with larger explosions and greatly improved graphics!<h2 class=\"bb_tag\">Learn to Spell Again</h2><br>As an all-powerful Wizard, you will have thousands of spells at your fingertips to experiment and defeat evil with, use them together with special Magicks to annihilate foes or give necessary aid to your companions.<br><ul class=\"bb_ul\"><li>Combine up to five elements at a time and work together with—or against—your friends for that full Magicka co-op experience.<br></li><li>Four Player Friendly Fire Compatible Co-op<br></li><li>Full co-op support! All levels and game modes in Magicka 2 will be supported for four player co-op with hot join, checkpoints, and other supportive features and functionality.<br></li><li>Friendly fire is always on, promoting emergent gameplay humor as players accidentally hurt or kill their friends in their attempts to annihilate enemies.</li></ul><h2 class=\"bb_tag\">Be the Wizard You Want to Be!</h2><br>With tons of robes, staffs, and weapons you can play as the robed Wizard of your choice to wreak havoc amongst hordes of fantasy creatures as you see fit. Magicka 2's dynamic spellcasting system can be used in many different ways, offering hours of experimentation for players to figure out which spells belong in their repertoire. Add both co-op and friendly fire on top of that and you have a recipe for hilarious disasters.<h2 class=\"bb_tag\">Replay the Next Chapter with Artifacts</h2><br>Magicka 2 offers players a story-driven campaign mode set in a lush fantasy world influenced heavily by Nordic folklore. New to the franchise are &quot;Artifacts,&quot; which act as different switches and options for players to customize and change the gameplay experience, adding more replayability when utilized.",
+      "short_description": "The world’s most irreverent co-op action adventure returns! In the next chapter of Magicka, players ascend from the ruins of Aldrheim to experience a Midgård almost wiped free of Wizards after the Wizard Wars, with the few that do remain having either gone mad or extremely hostile toward all others",
+      "supported_languages": "English, French, Italian, German, Spanish - Spain, Polish, Portuguese - Brazil, Russian",
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/header.jpg?t=1709831158",
+      "capsule_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/capsule_231x87.jpg?t=1709831158",
+      "capsule_imagev5": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/capsule_184x69.jpg?t=1709831158",
+      "website": "http://www.magicka2.com",
+      "pc_requirements": {
+        "minimum": "<strong>Minimum:</strong><br><ul class=\"bb_ul\"><li><strong>OS *:</strong> Windows 7,  8 or 10<br></li><li><strong>Processor:</strong> CPU: 3GHz Dual Core (Intel Pentium G3220 or higher / AMD A4-4000 or higher)<br></li><li><strong>Memory:</strong> 2 GB RAM<br></li><li><strong>Graphics:</strong> Nvidia GeForce 550 or better / ATI Radeon HD 5850 or better<br></li><li><strong>Storage:</strong> 3 GB available space<br></li><li><strong>Sound Card:</strong> DirectX Compatible Sound Card</li></ul>",
+        "recommended": "<strong>Recommended:</strong><br><ul class=\"bb_ul\"><li><strong>OS *:</strong> Windows 7,  8 or 10<br></li><li><strong>Processor:</strong> 2.8GHz Quad Core (Intel Core i5-2300 or higher / AMD A8-3850 or higher)<br></li><li><strong>Memory:</strong> 4 GB RAM<br></li><li><strong>Graphics:</strong> Nvidia GeForce 640 or better / ATI Radeon HD 6670 or better<br></li><li><strong>Storage:</strong> 3 GB available space<br></li><li><strong>Sound Card:</strong> DirectX Compatible Sound Card</li></ul>"
+      },
+      "mac_requirements": {
+        "minimum": "<strong>Minimum:</strong><br><ul class=\"bb_ul\"><li><strong>OS:</strong> OSX 10.7<br></li><li><strong>Processor:</strong> Intel Core i5, 1.7GHz Dual-Core<br></li><li><strong>Memory:</strong> 4 GB RAM<br></li><li><strong>Graphics:</strong> Intel HD Graphics 4000<br></li><li><strong>Storage:</strong> 3 GB available space</li></ul>",
+        "recommended": "<strong>Recommended:</strong><br><ul class=\"bb_ul\"><li><strong>OS:</strong> OSX 10.7<br></li><li><strong>Processor:</strong> Intel Core i5, 2.5GHz<br></li><li><strong>Memory:</strong> 4 GB RAM<br></li><li><strong>Graphics:</strong> Radeon HD 6750M<br></li><li><strong>Storage:</strong> 3 GB available space</li></ul>"
+      },
+      "linux_requirements": {
+        "minimum": "<strong>Minimum:</strong><br><ul class=\"bb_ul\"><li><strong>OS:</strong> Ubuntu 12.04<br></li><li><strong>Processor:</strong> 3GHz Dual Core (Intel Pentium G3220 or higher / AMD A4-4000 or higher)<br></li><li><strong>Memory:</strong> 2 GB RAM<br></li><li><strong>Graphics:</strong> Nvidia GeForce 550 or better / ATI Radeon HD 5850 or better<br></li><li><strong>Storage:</strong> 3 GB available space</li></ul>",
+        "recommended": "<strong>Recommended:</strong><br><ul class=\"bb_ul\"><li><strong>OS:</strong> Ubuntu 14.04 LTS<br></li><li><strong>Processor:</strong> 2.8GHz Quad Core (Intel Core i5-2300 or higher / AMD A8-3850 or higher)<br></li><li><strong>Memory:</strong> 4 GB RAM<br></li><li><strong>Graphics:</strong> Nvidia GeForce 640 or better / ATI Radeon HD 6670 or better<br></li><li><strong>Storage:</strong> 3 GB available space</li></ul>"
+      },
+      "legal_notice": "Paradox Interactive, MAGICKA® Copyright© [2015] Paradox Interactive AB All rights reserved. <a href=\"https://steamcommunity.com/linkfilter/?u=http%3A%2F%2Fwww.paradoxplaza.com\" target=\"_blank\" rel=\" noopener\"  >www.paradoxplaza.com</a>",
+      "developers": [
+        "Pieces Interactive"
+      ],
+      "publishers": [
+        "Paradox Interactive"
+      ],
+      "price_overview": {
+        "currency": "EUR",
+        "initial": 1499,
+        "final": 1499,
+        "discount_percent": 0,
+        "initial_formatted": "",
+        "final_formatted": "14,99€"
+      },
+      "packages": [
+        66740,
+        66741,
+        61815
+      ],
+      "package_groups": [
+        {
+          "name": "default",
+          "title": "Buy Magicka 2",
+          "description": "",
+          "selection_text": "Select a purchase option",
+          "save_text": "",
+          "display_type": 0,
+          "is_recurring_subscription": "false",
+          "subs": [
+            {
+              "packageid": 61815,
+              "percent_savings_text": " ",
+              "percent_savings": 0,
+              "option_text": "Magicka 2 Upgrade Pack - 9,--€",
+              "option_description": "",
+              "can_get_free_license": "0",
+              "is_free_license": false,
+              "price_in_cents_with_discount": 900
+            },
+            {
+              "packageid": 66740,
+              "percent_savings_text": " ",
+              "percent_savings": 0,
+              "option_text": "Magicka 2 - 14,99€",
+              "option_description": "",
+              "can_get_free_license": "0",
+              "is_free_license": false,
+              "price_in_cents_with_discount": 1499
+            },
+            {
+              "packageid": 66741,
+              "percent_savings_text": " ",
+              "percent_savings": 0,
+              "option_text": "Magicka 2 Deluxe Edition - 23,99€",
+              "option_description": "",
+              "can_get_free_license": "0",
+              "is_free_license": false,
+              "price_in_cents_with_discount": 2399
+            }
+          ]
+        }
+      ],
+      "platforms": {
+        "windows": true,
+        "mac": true,
+        "linux": true
+      },
+      "categories": [
+        {
+          "id": 2,
+          "description": "Single-player"
+        },
+        {
+          "id": 1,
+          "description": "Multi-player"
+        },
+        {
+          "id": 9,
+          "description": "Co-op"
+        },
+        {
+          "id": 24,
+          "description": "Shared/Split Screen"
+        },
+        {
+          "id": 22,
+          "description": "Steam Achievements"
+        },
+        {
+          "id": 28,
+          "description": "Full controller support"
+        },
+        {
+          "id": 29,
+          "description": "Steam Trading Cards"
+        },
+        {
+          "id": 41,
+          "description": "Remote Play on Phone"
+        },
+        {
+          "id": 42,
+          "description": "Remote Play on Tablet"
+        },
+        {
+          "id": 43,
+          "description": "Remote Play on TV"
+        },
+        {
+          "id": 44,
+          "description": "Remote Play Together"
+        },
+        {
+          "id": 62,
+          "description": "Family Sharing"
+        }
+      ],
+      "genres": [
+        {
+          "id": "1",
+          "description": "Action"
+        },
+        {
+          "id": "25",
+          "description": "Adventure"
+        }
+      ],
+      "screenshots": [
+        {
+          "id": 0,
+          "path_thumbnail": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_41b744c738cc2d394378ccd1b1bf5e1db0163b64.600x338.jpg?t=1709831158",
+          "path_full": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_41b744c738cc2d394378ccd1b1bf5e1db0163b64.1920x1080.jpg?t=1709831158"
+        },
+        {
+          "id": 1,
+          "path_thumbnail": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_ab78099a447154ad202a1043a2a051c35df7a586.600x338.jpg?t=1709831158",
+          "path_full": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_ab78099a447154ad202a1043a2a051c35df7a586.1920x1080.jpg?t=1709831158"
+        },
+        {
+          "id": 2,
+          "path_thumbnail": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_b270b4da37c5fd3daa6c0d9d2b75064f32679556.600x338.jpg?t=1709831158",
+          "path_full": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_b270b4da37c5fd3daa6c0d9d2b75064f32679556.1920x1080.jpg?t=1709831158"
+        },
+        {
+          "id": 3,
+          "path_thumbnail": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_acc283cf39ad175376cc75fd718a8738e3d91372.600x338.jpg?t=1709831158",
+          "path_full": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_acc283cf39ad175376cc75fd718a8738e3d91372.1920x1080.jpg?t=1709831158"
+        },
+        {
+          "id": 4,
+          "path_thumbnail": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_1af2c0b9659e116ed200c994900074e496ef1d07.600x338.jpg?t=1709831158",
+          "path_full": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_1af2c0b9659e116ed200c994900074e496ef1d07.1920x1080.jpg?t=1709831158"
+        },
+        {
+          "id": 5,
+          "path_thumbnail": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_251d8a4113b2ea042e97364b2088a78d597ee5da.600x338.jpg?t=1709831158",
+          "path_full": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_251d8a4113b2ea042e97364b2088a78d597ee5da.1920x1080.jpg?t=1709831158"
+        },
+        {
+          "id": 6,
+          "path_thumbnail": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_9ae2227cbe35c9f59aa6f9f684533681dfa63531.600x338.jpg?t=1709831158",
+          "path_full": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_9ae2227cbe35c9f59aa6f9f684533681dfa63531.1920x1080.jpg?t=1709831158"
+        },
+        {
+          "id": 7,
+          "path_thumbnail": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_ae67d31d038cf9f8a91f3da77b1f4775a533de8d.600x338.jpg?t=1709831158",
+          "path_full": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_ae67d31d038cf9f8a91f3da77b1f4775a533de8d.1920x1080.jpg?t=1709831158"
+        },
+        {
+          "id": 8,
+          "path_thumbnail": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_c44be8f4cea776373a4932166bcce7a824b78eef.600x338.jpg?t=1709831158",
+          "path_full": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_c44be8f4cea776373a4932166bcce7a824b78eef.1920x1080.jpg?t=1709831158"
+        },
+        {
+          "id": 9,
+          "path_thumbnail": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_c2084c76f23e6e6109eb6c25684912e5b8d55844.600x338.jpg?t=1709831158",
+          "path_full": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_c2084c76f23e6e6109eb6c25684912e5b8d55844.1920x1080.jpg?t=1709831158"
+        },
+        {
+          "id": 10,
+          "path_thumbnail": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_bb56b1d567d71a3b70a2756c4aae2263f3d2c2eb.600x338.jpg?t=1709831158",
+          "path_full": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_bb56b1d567d71a3b70a2756c4aae2263f3d2c2eb.1920x1080.jpg?t=1709831158"
+        },
+        {
+          "id": 11,
+          "path_thumbnail": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_13da82f226d2510aa1c1d30850b516f9eb609f32.600x338.jpg?t=1709831158",
+          "path_full": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_13da82f226d2510aa1c1d30850b516f9eb609f32.1920x1080.jpg?t=1709831158"
+        },
+        {
+          "id": 12,
+          "path_thumbnail": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_b696c03b76933a711fbca30ef58fab189f230002.600x338.jpg?t=1709831158",
+          "path_full": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_b696c03b76933a711fbca30ef58fab189f230002.1920x1080.jpg?t=1709831158"
+        },
+        {
+          "id": 13,
+          "path_thumbnail": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_47c50c9541280f4e6fbd34fee32e7529883fb37e.600x338.jpg?t=1709831158",
+          "path_full": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_47c50c9541280f4e6fbd34fee32e7529883fb37e.1920x1080.jpg?t=1709831158"
+        },
+        {
+          "id": 14,
+          "path_thumbnail": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_a87b107c505eaa694078c2a57661ffcf2bce1684.600x338.jpg?t=1709831158",
+          "path_full": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_a87b107c505eaa694078c2a57661ffcf2bce1684.1920x1080.jpg?t=1709831158"
+        },
+        {
+          "id": 15,
+          "path_thumbnail": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_58ab0660af4d94131056672791c396b5e821eabd.600x338.jpg?t=1709831158",
+          "path_full": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/ss_58ab0660af4d94131056672791c396b5e821eabd.1920x1080.jpg?t=1709831158"
+        }
+      ],
+      "movies": [
+        {
+          "id": 2039712,
+          "name": "Magicka 2 - Release Trailer [EU]",
+          "thumbnail": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2039712/movie.293x165.jpg?t=1561035141",
+          "webm": {
+            "480": "http://video.akamai.steamstatic.com/store_trailers/2039712/movie480.webm?t=1561035141",
+            "max": "http://video.akamai.steamstatic.com/store_trailers/2039712/movie_max.webm?t=1561035141"
+          },
+          "mp4": {
+            "480": "http://video.akamai.steamstatic.com/store_trailers/2039712/movie480.mp4?t=1561035141",
+            "max": "http://video.akamai.steamstatic.com/store_trailers/2039712/movie_max.mp4?t=1561035141"
+          },
+          "highlight": true
+        },
+        {
+          "id": 2032930,
+          "name": "Magicka 2 Announcement trailer [EU]",
+          "thumbnail": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2032930/movie.293x165.jpg?t=1561035148",
+          "webm": {
+            "480": "http://video.akamai.steamstatic.com/store_trailers/2032930/movie480.webm?t=1561035148",
+            "max": "http://video.akamai.steamstatic.com/store_trailers/2032930/movie_max.webm?t=1561035148"
+          },
+          "mp4": {
+            "480": "http://video.akamai.steamstatic.com/store_trailers/2032930/movie480.mp4?t=1561035148",
+            "max": "http://video.akamai.steamstatic.com/store_trailers/2032930/movie_max.mp4?t=1561035148"
+          },
+          "highlight": true
+        },
+        {
+          "id": 2037662,
+          "name": "Magicka 2 - Pre-Order Trailer [EU]",
+          "thumbnail": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2037662/movie.293x165.jpg?t=1587505318",
+          "webm": {
+            "480": "http://video.akamai.steamstatic.com/store_trailers/2037662/movie480.webm?t=1587505318",
+            "max": "http://video.akamai.steamstatic.com/store_trailers/2037662/movie_max.webm?t=1587505318"
+          },
+          "mp4": {
+            "480": "http://video.akamai.steamstatic.com/store_trailers/2037662/movie480.mp4?t=1587505318",
+            "max": "http://video.akamai.steamstatic.com/store_trailers/2037662/movie_max.mp4?t=1587505318"
+          },
+          "highlight": true
+        }
+      ],
+      "recommendations": {
+        "total": 8711
+      },
+      "achievements": {
+        "total": 47,
+        "highlighted": [
+          {
+            "name": "My Loot!",
+            "path": "https://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/238370/37d1602bfad43e55524ee5688f27235587d9e294.jpg"
+          },
+          {
+            "name": "Respect Your Elders",
+            "path": "https://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/238370/afca50efa1538df0f3d8bc30045555bad12fee0f.jpg"
+          },
+          {
+            "name": "Burying the Past",
+            "path": "https://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/238370/3952d1696676c256b39db171f182af3f777392c7.jpg"
+          },
+          {
+            "name": "Humble Beginnings",
+            "path": "https://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/238370/a22fa7fba27953922eaaa4f87546257d6311bfc0.jpg"
+          },
+          {
+            "name": "Serious Damage!",
+            "path": "https://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/238370/e077f6fca64292888f89b474d4d48463f6daac14.jpg"
+          },
+          {
+            "name": "Terrible Terrible Damage!",
+            "path": "https://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/238370/ba82d8777e5da4a24194cd669768ebaa8fddc37e.jpg"
+          },
+          {
+            "name": "Nurse",
+            "path": "https://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/238370/265b106ca0820acdd9a248ab9e915de9826cd9af.jpg"
+          },
+          {
+            "name": "Doctor",
+            "path": "https://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/238370/7c418b23fece97b6ace0e09c153752144956df7e.jpg"
+          },
+          {
+            "name": "Miracle Worker",
+            "path": "https://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/238370/22bfd24bd617da5a43b5eb7c84822a1064c7421f.jpg"
+          },
+          {
+            "name": "I Meant To Do That",
+            "path": "https://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/238370/31779b5b7730535662bb4a7df83753c3774b1b58.jpg"
+          }
+        ]
+      },
+      "release_date": {
+        "coming_soon": false,
+        "date": "26 May, 2015"
+      },
+      "support_info": {
+        "url": "http://www.paradoxplaza.com/support",
+        "email": "support@paradoxplaza.com"
+      },
+      "background": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/page_bg_generated_v6b.jpg?t=1709831158",
+      "background_raw": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238370/page.bg.jpg?t=1709831158",
+      "content_descriptors": {
+        "ids": [],
+        "notes": null
+      },
+      "ratings": {
+        "esrb": {
+          "rating": "t",
+          "descriptors": "Blood and Gore\r\nMild Language\r\nViolence",
+          "interactive_elements": "Users Interact"
+        },
+        "pegi": {
+          "rating": "16",
+          "descriptors": "Violence"
+        },
+        "dejus": {
+          "rating_generated": "1",
+          "rating": "14",
+          "required_age": "14",
+          "banned": "0",
+          "use_age_gate": "0",
+          "descriptors": "Violência\nLinguagem imprópria"
+        },
+        "steam_germany": {
+          "rating_generated": "1",
+          "rating": "16",
+          "required_age": "16",
+          "banned": "0",
+          "use_age_gate": "0",
+          "descriptors": "Drastische Gewalt"
+        }
+      }
+    }
+  }
+}
