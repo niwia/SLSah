@@ -115,6 +115,7 @@ def generate_stats_achievements(
 
         s['default']=f"{default_num}"
         s['global']=f"{global_num}"
+        del s['min']
     output_stats = copy.deepcopy(stats_out)
 
     # print(output_ach)
