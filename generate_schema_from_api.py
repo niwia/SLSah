@@ -11,14 +11,27 @@ DOTENV_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.env')
 DEFAULT_OUTPUT_DIR = os.path.expanduser("~/.steam/steam/appcache/stats")
 SLSSTEAM_CONFIG_PATH = os.path.expanduser("~/.config/SLSsteam/config.yaml")
 
-def get_env_value(key, prompt):
+def get_env_value(key, prompt, help_url="", example=""):
     load_dotenv(dotenv_path=DOTENV_PATH)
     value = os.getenv(key)
-    if not value:
-        print(f"{prompt} not found.")
+
+    while not value:
+        print(f"\n{prompt} not found.")
+        if help_url:
+            print(f"You can get one from: {help_url}")
+        if example:
+            print(f"Example format: {example}")
+            
         value = input(f"Please enter your {prompt}: ")
+
+        if key == "STEAM_API_KEY" and len(value) < 20:
+            print("Invalid API Key. It should be at least 20 characters long.")
+            value = None
+            continue
+
         set_key(DOTENV_PATH, key, value)
         print(f"{prompt} saved to .env file.")
+
     return value
 
 def deep_merge(source, destination):
@@ -158,19 +171,36 @@ def manual_input_mode(api_key, steam_id):
         print(f"Files skipped: {summary['skipped']}")
         print(f"Errors: {summary['errors']}")
 
+def clear_credentials():
+    if os.path.exists(DOTENV_PATH):
+        os.remove(DOTENV_PATH)
+        print("Credentials cleared.")
+    else:
+        print("No credentials found to clear.")
+
 def main():
-    api_key = get_env_value("STEAM_API_KEY", "Steam API Key")
-    steam_id = get_env_value("STEAM_USER_ID", "Steam User ID")
     while True:
         print("\n--- Steam Schema Generator ---")
         print("1. Generate from SLSsteam config")
         print("2. Manual App ID input")
+        print("3. Clear Credentials")
         print("q. Quit")
         choice = input("Select an option: ")
-        if choice == '1': process_slssteam_list(api_key, steam_id)
-        elif choice == '2': manual_input_mode(api_key, steam_id)
-        elif choice.lower() == 'q': break
-        else: print("Invalid option. Please try again.")
+
+        if choice == '1':
+            api_key = get_env_value("STEAM_API_KEY", "Steam API Key", "https://steamcommunity.com/dev/apikey")
+            steam_id = get_env_value("STEAM_USER_ID", "Steam User ID", "https://steamid.io/", "[U:1:xxxxxxxxx]")
+            process_slssteam_list(api_key, steam_id)
+        elif choice == '2':
+            api_key = get_env_value("STEAM_API_KEY", "Steam API Key", "https://steamcommunity.com/dev/apikey")
+            steam_id = get_env_value("STEAM_USER_ID", "Steam User ID", "https://steamid.io/", "[U:1:xxxxxxxxx]")
+            manual_input_mode(api_key, steam_id)
+        elif choice == '3':
+            clear_credentials()
+        elif choice.lower() == 'q':
+            break
+        else:
+            print("Invalid option. Please try again.")
 
 if __name__ == '__main__':
     main()
