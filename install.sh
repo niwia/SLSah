@@ -35,6 +35,9 @@ source .venv/bin/activate
 pip install -r requirements.txt
 deactivate
 
+# Make the run script executable
+chmod +x run.sh
+
 # Create the desktop shortcut
 DESKTOP_SHORTCUT_PATH="$HOME/Desktop/steam-schema-generator.desktop"
 echo "Creating desktop shortcut at $DESKTOP_SHORTCUT_PATH..."
@@ -43,7 +46,7 @@ cat > "$DESKTOP_SHORTCUT_PATH" <<EOL
 [Desktop Entry]
 Name=Steam Schema Generator
 Comment=Generate Steam schema files
-Exec=konsole -e "bash -c 'cd \"$INSTALL_DIR\" && source .venv/bin/activate && python generate_schema_from_api.py; read -p \"Press Enter to exit\"'"
+Exec=konsole -e "$INSTALL_DIR/run.sh"
 Icon=utilities-terminal
 Terminal=false
 Type=Application
