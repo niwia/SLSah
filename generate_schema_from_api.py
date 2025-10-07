@@ -174,11 +174,19 @@ def manual_input_mode(api_key, steam_id):
 def clear_credentials():
     if os.path.exists(DOTENV_PATH):
         os.remove(DOTENV_PATH)
-        print("Credentials cleared.")
+        print("Credentials cleared. Please restart the script to set them up again.")
     else:
         print("No credentials found to clear.")
 
 def main():
+    load_dotenv(dotenv_path=DOTENV_PATH)
+    api_key = os.getenv("STEAM_API_KEY")
+    steam_id = os.getenv("STEAM_USER_ID")
+
+    if not api_key or not steam_id:
+        api_key = get_env_value("STEAM_API_KEY", "Steam API Key", "https://steamcommunity.com/dev/apikey")
+        steam_id = get_env_value("STEAM_USER_ID", "Steam User ID", "https://steamid.io/", "[U:1:xxxxxxxxx]")
+
     while True:
         print("\n--- Steam Schema Generator ---")
         print("1. Generate from SLSsteam config")
@@ -188,15 +196,12 @@ def main():
         choice = input("Select an option: ")
 
         if choice == '1':
-            api_key = get_env_value("STEAM_API_KEY", "Steam API Key", "https://steamcommunity.com/dev/apikey")
-            steam_id = get_env_value("STEAM_USER_ID", "Steam User ID", "https://steamid.io/", "[U:1:xxxxxxxxx]")
             process_slssteam_list(api_key, steam_id)
         elif choice == '2':
-            api_key = get_env_value("STEAM_API_KEY", "Steam API Key", "https://steamcommunity.com/dev/apikey")
-            steam_id = get_env_value("STEAM_USER_ID", "Steam User ID", "https://steamid.io/", "[U:1:xxxxxxxxx]")
             manual_input_mode(api_key, steam_id)
         elif choice == '3':
             clear_credentials()
+            break
         elif choice.lower() == 'q':
             break
         else:
