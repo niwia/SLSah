@@ -2,3 +2,5 @@ steam[client] @ git+https://github.com/detiam/steam_websocket@b8239912e6a190f490
 pyinstaller
 requests
 certifi
+python-dotenv
+PyYAML
