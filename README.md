@@ -16,7 +16,7 @@ This tool allows you to generate `UserGameStatsSchema` and `UserGameStats` files
 Run the following command in your terminal:
 
 ```bash
-curl -L https://github.com/YOUR-USERNAME/YOUR-REPOSITORY/raw/main/install.sh | sh
+curl -L https://github.com/niwia/SLSah/raw/main/install.sh | sh
 ```
 
 This will download and run the installer, which will create a shortcut on your desktop.
@@ -28,9 +28,6 @@ Double-click the "Steam Schema Generator" icon on your desktop to run the tool.
 ## Credits and License
 
 This tool is a heavily modified version of the original `generate_emu_config_old` tool from the [gbe_fork_tools](https://github.com/Detanup01/gbe_fork_tools) repository by [Detanup01](https://github.com/Detanup01).
-
-The original author had this to say about the tool:
-> Currently I dont have a plan to make a similar tool in c# this time, might be other time, feel free to use any tool that does the same job as this.
 
 This tool also integrates with [SLSsteam](https://github.com/AceSLS/SLSsteam) by [AceSLS](https://github.com/AceSLS) to provide a more automated workflow.
 

@@ -7,7 +7,7 @@ set -e
 INSTALL_DIR="$HOME/steam-schema-generator"
 
 # GitHub repository URL (REPLACE WITH YOUR REPO URL)
-REPO_URL="https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git"
+REPO_URL="https://github.com/niwia/SLSah.git"
 
 # Create installation directory
 echo "Creating installation directory at $INSTALL_DIR..."
