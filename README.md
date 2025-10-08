@@ -76,6 +76,29 @@ If you prefer to set up the tool manually:
     python3 generate_schema_from_api.py
     ```
 
+## Updating
+
+To update the tool to the latest version, simply run the installer command again. It will automatically fetch the latest files while preserving your settings.
+
+```bash
+curl -L https://github.com/niwia/SLSah/raw/main/install.sh | sh
+```
+
+## Uninstalling
+
+To uninstall the tool, you can run the `uninstall.sh` script.
+
+1.  Open a terminal.
+2.  Navigate to the installation directory:
+    ```bash
+    cd ~/steam-schema-generator
+    ```
+3.  Run the uninstaller:
+    ```bash
+    bash uninstall.sh
+    ```
+This will remove the application and the desktop shortcut. Your generated schema files in the Steam directory will not be deleted.
+
 ## Credits and License
 
 This tool was developed with the assistance of Google's Gemini AI. It is a heavily modified version of the original `generate_emu_config_old` tool from the [gbe_fork_tools](https://github.com/Detanup01/gbe_fork_tools) repository by [Detanup01](https://github.com/Detanup01).
