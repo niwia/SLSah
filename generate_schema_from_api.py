@@ -247,36 +247,60 @@ def main():
     api_key = os.getenv("STEAM_API_KEY")
     steam_id = os.getenv("STEAM_USER_ID")
 
+    def clear():
+        os.system('cls' if platform.system() == 'Windows' else 'clear')
+
     if not api_key or not steam_id:
+        clear()
         api_key = get_env_value("STEAM_API_KEY", "Steam API Key", "https://steamcommunity.com/dev/apikey")
         steam_id = get_env_value("STEAM_USER_ID", "Steam User ID", "https://steamid.io/", "[U:1:xxxxxxxxx]")
 
     while True:
-        if platform.system() == "Windows":
-            os.system('cls')
-        else:
-            os.system('clear')
+        clear()
         print("\n--- Steam Schema Generator ---")
         print("1. Generate from SLSsteam config")
         print("2. Scan Steam library for games")
         print("3. Manual App ID input")
         print("4. Clear Credentials")
+        print("5. Update")
+        print("6. Uninstall")
         print("q. Quit")
         choice = input("Select an option: ")
 
         if choice == '1':
+            clear()
             process_slssteam_list(api_key, steam_id)
+            input("\nPress Enter to return to the main menu.")
         elif choice == '2':
+            clear()
             process_steam_library(api_key, steam_id)
+            input("\nPress Enter to return to the main menu.")
         elif choice == '3':
+            clear()
             manual_input_mode(api_key, steam_id)
         elif choice == '4':
+            clear()
             clear_credentials()
+            input("\nCredentials cleared. Press Enter to exit.")
+            break
+        elif choice == '5':
+            clear()
+            print("Updating...")
+            os.system("bash install.sh")
+            print("\nUpdate complete. Please restart the script.")
+            input("Press Enter to exit.")
+            break
+        elif choice == '6':
+            clear()
+            os.system("bash uninstall.sh")
+            input("\nPress Enter to exit.")
             break
         elif choice.lower() == 'q':
             break
         else:
-            print("Invalid option. Please try again.")
+            clear()
+            print("Invalid option.")
+            input("\nPress Enter to continue.")
 
 if __name__ == '__main__':
     main()

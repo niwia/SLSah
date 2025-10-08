@@ -78,7 +78,12 @@ If you prefer to set up the tool manually:
 
 ## Updating
 
-To update the tool to the latest version, simply run the installer command again. It will automatically fetch the latest files while preserving your settings.
+There are two ways to update the tool to the latest version:
+
+1.  **From the Main Menu:** Simply select the "Update" option from the main menu of the tool.
+2.  **From the Terminal:** Run the installer command again.
+
+In both cases, the script will automatically fetch the latest files while preserving your settings.
 
 ```bash
 curl -L https://github.com/niwia/SLSah/raw/main/install.sh | sh
@@ -86,17 +91,20 @@ curl -L https://github.com/niwia/SLSah/raw/main/install.sh | sh
 
 ## Uninstalling
 
-To uninstall the tool, you can run the `uninstall.sh` script.
+There are two ways to uninstall the tool:
 
-1.  Open a terminal.
-2.  Navigate to the installation directory:
-    ```bash
-    cd ~/steam-schema-generator
-    ```
-3.  Run the uninstaller:
-    ```bash
-    bash uninstall.sh
-    ```
+1.  **From the Main Menu:** Simply select the "Uninstall" option from the main menu of the tool.
+2.  **From the Terminal:** Run the `uninstall.sh` script.
+    1.  Open a terminal.
+    2.  Navigate to the installation directory:
+        ```bash
+        cd ~/steam-schema-generator
+        ```
+    3.  Run the uninstaller:
+        ```bash
+        bash uninstall.sh
+        ```
+
 This will remove the application and the desktop shortcut. Your generated schema files in the Steam directory will not be deleted.
 
 ## Credits and License
