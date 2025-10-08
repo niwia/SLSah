@@ -107,6 +107,10 @@ There are two ways to uninstall the tool:
 
 This will remove the application and the desktop shortcut. Your generated schema files in the Steam directory will not be deleted.
 
+## Alternatives
+
+If you prefer a tool that uses your Steam login credentials instead of a Steam Web API key, you can check out [SLScheevo](https://github.com/xamionex/SLScheevo). It is another excellent tool that achieves a similar goal but uses a different authentication method.
+
 ## Credits and License
 
 This tool was developed with the assistance of Google's Gemini AI. It is a heavily modified version of the original `generate_emu_config_old` tool from the [gbe_fork_tools](https://github.com/Detanup01/gbe_fork_tools) repository by [Detanup01](https://github.com/Detanup01).
