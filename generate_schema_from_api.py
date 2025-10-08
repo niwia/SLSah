@@ -252,6 +252,10 @@ def main():
         steam_id = get_env_value("STEAM_USER_ID", "Steam User ID", "https://steamid.io/", "[U:1:xxxxxxxxx]")
 
     while True:
+        if platform.system() == "Windows":
+            os.system('cls')
+        else:
+            os.system('clear')
         print("\n--- Steam Schema Generator ---")
         print("1. Generate from SLSsteam config")
         print("2. Scan Steam library for games")
