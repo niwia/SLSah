@@ -6,6 +6,9 @@ import json
 import shutil
 import yaml
 from dotenv import load_dotenv, set_key
+import re
+import platform
+from pathlib import Path
 
 DOTENV_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.env')
 DEFAULT_OUTPUT_DIR = os.path.expanduser("~/.steam/steam/appcache/stats")
@@ -118,6 +121,58 @@ def get_game_schema(api_key, steam_id, app_id, summary, batch_mode='ask'):
         summary['errors'] += 1
         return False
 
+def parse_libraryfolders_vdf():
+    """Parse libraryfolders.vdf to extract app IDs"""
+    if platform.system() == "Windows":
+        STEAM_DIR = Path("C:/Program Files (x86)/Steam")
+    else:
+        STEAM_DIR = Path.home() / ".local/share/Steam"
+    LIBRARY_FILE = STEAM_DIR / "steamapps/libraryfolders.vdf"
+
+    if not LIBRARY_FILE.exists():
+        print(f"Steam library file not found at {LIBRARY_FILE}")
+        return []
+
+    print(f"Reading Steam library from: {LIBRARY_FILE}")
+    content = LIBRARY_FILE.read_text()
+
+    app_ids = set(re.findall(r'"apps"\s*{([^}]+)}', content, re.DOTALL))
+    app_ids = set(re.findall(r'"(\d+)"\s*"', ''.join(app_ids)))
+
+    return sorted([int(app_id) for app_id in app_ids if app_id.isdigit()])
+
+def process_steam_library(api_key, steam_id):
+    summary = {'total': 0, 'overwritten': 0, 'updated': 0, 'skipped': 0, 'errors': 0}
+    app_ids = parse_libraryfolders_vdf()
+    if not app_ids:
+        print("No App IDs found in Steam library.")
+        return
+
+    print(f"Found {len(app_ids)} App IDs in Steam library.")
+    print("\nHow do you want to handle existing files?")
+    print("1. Ask for each game")
+    print("2. Overwrite all")
+    print("3. Update all")
+    print("4. Skip all")
+    print("b. Back to main menu")
+    choice = input("Select an option: ")
+    batch_mode = 'ask'
+    if choice.lower() == 'b':
+        return
+    if choice == '2': batch_mode = 'overwrite'
+    elif choice == '3': batch_mode = 'update'
+    elif choice == '4': batch_mode = 'skip'
+
+    for app_id in app_ids:
+        get_game_schema(api_key, steam_id, str(app_id), summary, batch_mode)
+
+    print("\n--- Summary ---")
+    print(f"Total games processed: {summary['total']}")
+    print(f"Files overwritten: {summary['overwritten']}")
+    print(f"Files updated: {summary['updated']}")
+    print(f"Files skipped: {summary['skipped']}")
+    print(f"Errors: {summary['errors']}")
+
 def process_slssteam_list(api_key, steam_id):
     summary = {'total': 0, 'overwritten': 0, 'updated': 0, 'skipped': 0, 'errors': 0}
     try:
@@ -133,7 +188,10 @@ def process_slssteam_list(api_key, steam_id):
         print("2. Overwrite all")
         print("3. Update all")
         print("4. Skip all")
+        print("b. Back to main menu")
         choice = input("Select an option: ")
+        if choice.lower() == 'b':
+            return
         batch_mode = 'ask'
         if choice == '2': batch_mode = 'overwrite'
         elif choice == '3': batch_mode = 'update'
@@ -157,8 +215,8 @@ def process_slssteam_list(api_key, steam_id):
 def manual_input_mode(api_key, steam_id):
     summary = {'total': 0, 'overwritten': 0, 'updated': 0, 'skipped': 0, 'errors': 0}
     while True:
-        app_id = input("\nEnter the App ID (or 'q' to return to main menu): ")
-        if app_id.lower() == 'q': break
+        app_id = input("\nEnter the App ID (or 'b' to return to main menu): ")
+        if app_id.lower() == 'b': break
         if not app_id.isdigit():
             print("Invalid App ID. Please enter a number.")
             continue
@@ -190,16 +248,19 @@ def main():
     while True:
         print("\n--- Steam Schema Generator ---")
         print("1. Generate from SLSsteam config")
-        print("2. Manual App ID input")
-        print("3. Clear Credentials")
+        print("2. Scan Steam library for games")
+        print("3. Manual App ID input")
+        print("4. Clear Credentials")
         print("q. Quit")
         choice = input("Select an option: ")
 
         if choice == '1':
             process_slssteam_list(api_key, steam_id)
         elif choice == '2':
-            manual_input_mode(api_key, steam_id)
+            process_steam_library(api_key, steam_id)
         elif choice == '3':
+            manual_input_mode(api_key, steam_id)
+        elif choice == '4':
             clear_credentials()
             break
         elif choice.lower() == 'q':
