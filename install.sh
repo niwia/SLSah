@@ -17,6 +17,8 @@ cd "$INSTALL_DIR"
 # Clone the repository or pull the latest changes
 if [ -d ".git" ]; then
     echo "Updating existing installation..."
+    echo "Discarding any local changes..."
+    git reset --hard HEAD
     git pull
 else
     echo "Cloning repository..."
