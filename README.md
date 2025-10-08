@@ -29,6 +29,8 @@ During the first run, the script will prompt you for your Steam Web API Key and 
 
 It is important to use your own Steam User ID. This ID is used to name the generated stats file (e.g., `UserGameStats_{YourID}_{AppID}.bin`), which allows the Steam client to correctly associate the achievement data with your profile.
 
+**Important:** Some tools or websites might give you an ID in the format `[U:1:11223344]`. The script is smart enough to handle this, but the number you need is the last part, e.g., `11223344`.
+
 There are several ways to find your ID. The easiest is through the Steam client:
 
 1.  In the Steam client, open your "Friends & Chat" window.
