@@ -5,25 +5,74 @@ This tool allows you to generate `UserGameStatsSchema` and `UserGameStats` files
 ## Features
 
 *   **Interactive UI:** A simple and easy-to-use terminal interface.
+*   **Multiple Game Sources:** Generate schemas from your `SLSsteam` config, by scanning your Steam library, or by manual App ID input.
 *   **API Key & User ID Management:** Securely saves your Steam API key and User ID so you only have to enter them once.
-*   **SLSsteam Integration:** Automatically generate files for all games in your SLSsteam `config.yaml`.
 *   **Smart File Handling:** Intelligently handles existing files with options to overwrite, update (merge new achievements), or skip.
 *   **Game Name Display:** Shows the name of the game being processed.
 *   **Summary Report:** Provides a summary of the operations performed.
 
+## Configuration
+
+During the first run, the script will prompt you for your Steam Web API Key and your Steam User ID. These are saved in a local `.env` file in the script's directory, so you only need to enter them once.
+
+### Steam Web API Key
+
+**Important:** You can use an API key from any Steam account. It does not need to be from your primary account. This key is only used to fetch public achievement data and is not linked to your account for any other purpose.
+
+1.  Go to the Steam API Key page: [https://steamcommunity.com/dev/apikey](https://steamcommunity.com/dev/apikey)
+2.  You will be asked for a domain name. This does not matter, you can enter any value (e.g., `localhost`).
+3.  Once you agree to the terms, you will be given a key. Copy this key for the script setup.
+
+<img src="thumbnails/webapi.png" alt="Steam Web API Key" width="500"/>
+
+### Steam User ID
+
+It is important to use your own Steam User ID. This ID is used to name the generated stats file (e.g., `UserGameStats_{YourID}_{AppID}.bin`), which allows the Steam client to correctly associate the achievement data with your profile.
+
+There are several ways to find your ID. The easiest is through the Steam client:
+
+1.  In the Steam client, open your "Friends & Chat" window.
+
+    <img src="thumbnails/friends1.png" alt="Friends & Chat" width="300"/>
+2.  Click "Add a Friend".
+
+    <img src="thumbnails/friends2.png" alt="Add a Friend" width="500"/>
+3.  Your Account ID is displayed at the top. This is the number you need to copy for the script setup.
+
+    <img src="thumbnails/steamaid.png" alt="Steam Account ID" width="500"/>
+
+Alternatively, you can use websites like [SteamDB](https://steamdb.info/) (look for `steam3ID`) or [SteamID.io](https://steamid.io/).
+
+<img src="thumbnails/steamdb.png" alt="SteamDB Profile" width="500"/>
+<img src="thumbnails/steamid.png" alt="SteamID.io Profile" width="500"/>
+
 ## Installation
 
-Run the following command in your terminal:
+### Easy Installer (Recommended)
+
+Run the following command in your terminal. This will download the script, install dependencies, and create a desktop shortcut.
 
 ```bash
 curl -L https://github.com/niwia/SLSah/raw/main/install.sh | sh
 ```
 
-This will download and run the installer, which will create a shortcut on your desktop.
+### Manual Installation
+
+If you prefer to set up the tool manually:
+
+1.  Clone or download this repository.
+2.  Install the required Python packages:
+    ```bash
+    pip install -r requirements.txt
+    ```
 
 ## Usage
 
-Double-click the "Steam Schema Generator" icon on your desktop to run the tool.
+*   **Installer:** If you used the installer, simply double-click the "Steam Schema Generator" icon on your desktop to run the tool.
+*   **Manual:** If you installed manually, you can run the script directly from your terminal:
+    ```bash
+    python3 generate_schema_from_api.py
+    ```
 
 ## Credits and License
 
