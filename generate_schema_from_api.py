@@ -9,12 +9,32 @@ from dotenv import load_dotenv, set_key
 import re
 import platform
 from pathlib import Path
+import socket
 
 DOTENV_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.env')
 DEFAULT_OUTPUT_DIR = os.path.expanduser("~/.steam/steam/appcache/stats")
 SLSSTEAM_CONFIG_PATH = os.path.expanduser("~/.config/SLSsteam/config.yaml")
 
+def clear():
+    """Clears the console screen."""
+    os.system('cls' if platform.system() == 'Windows' else 'clear')
+
+def check_internet_connection(host="8.8.8.8", port=53, timeout=3):
+    """
+    Check for internet connectivity by trying to connect to a known host.
+    """
+    try:
+        socket.setdefaulttimeout(timeout)
+        socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect((host, port))
+        return True
+    except socket.error as ex:
+        print("No internet connection. Please check your network settings.")
+        return False
+
 def get_env_value(key, prompt, help_url="", example=""):
+    """
+    Gets a value from the .env file, or prompts the user for it if it doesn't exist.
+    """
     load_dotenv(dotenv_path=DOTENV_PATH)
     value = os.getenv(key)
 
@@ -25,7 +45,11 @@ def get_env_value(key, prompt, help_url="", example=""):
         if example:
             print(f"Example format: {example}")
             
-        value = input(f"Please enter your {prompt}: ")
+        value = input(f"Please enter your {prompt}: ").strip()
+
+        if not value:
+            print("Input cannot be empty.")
+            continue
 
         if key == "STEAM_API_KEY" and len(value) < 20:
             print("Invalid API Key. It should be at least 20 characters long.")
@@ -33,7 +57,6 @@ def get_env_value(key, prompt, help_url="", example=""):
             continue
 
         if key == "STEAM_USER_ID":
-            # Extracts the account ID from formats like [U:1:123456789]
             match = re.search(r'(\d+)]?$', value)
             if match:
                 value = match.group(1)
@@ -44,6 +67,9 @@ def get_env_value(key, prompt, help_url="", example=""):
     return value
 
 def deep_merge(source, destination):
+    """
+    Recursively merges two dictionaries.
+    """
     for key, value in source.items():
         if isinstance(value, dict):
             node = destination.setdefault(key, {})
@@ -53,11 +79,20 @@ def deep_merge(source, destination):
     return destination
 
 def get_game_schema(api_key, steam_id, app_id, summary, batch_mode='ask'):
+    """
+    Fetches the game schema from the Steam Web API and processes it.
+    """
     try:
         url = f"https://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key={api_key}&appid={app_id}"
         response = requests.get(url)
         response.raise_for_status()
         data = response.json()
+
+        if not data.get('game'):
+            print(f"Error processing App ID {app_id}: No game data in response. The App ID might be invalid or not released.")
+            summary['errors'] += 1
+            return False
+
         game_name = data['game']['gameName']
         print(f"--- Processing {game_name} ({app_id}) ---")
 
@@ -122,6 +157,15 @@ def get_game_schema(api_key, steam_id, app_id, summary, batch_mode='ask'):
         summary['total'] += 1
         return True
 
+    except requests.exceptions.HTTPError as e:
+        if e.response.status_code == 401:
+            print(f"Error processing App ID {app_id}: Unauthorized. Your Steam API Key may be invalid.")
+        elif e.response.status_code == 404:
+            print(f"Error processing App ID {app_id}: Not Found. The game might not exist or the App ID is incorrect.")
+        else:
+            print(f"Error processing App ID {app_id}: HTTP Error {e.response.status_code}")
+        summary['errors'] += 1
+        return False
     except (requests.exceptions.RequestException, KeyError, FileNotFoundError) as e:
         print(f"Error processing App ID {app_id}: {e}")
         summary['errors'] += 1
@@ -140,21 +184,17 @@ def parse_libraryfolders_vdf():
         return []
 
     print(f"Reading Steam library from: {LIBRARY_FILE}")
-    content = LIBRARY_FILE.read_text()
+    try:
+        content = LIBRARY_FILE.read_text()
+        app_ids = set(re.findall(r'"apps"\s*{([^}]+)}', content, re.DOTALL))
+        app_ids = set(re.findall(r'"(\d+)"\s*"', ''.join(app_ids)))
+        return sorted([int(app_id) for app_id in app_ids if app_id.isdigit()])
+    except Exception as e:
+        print(f"Error parsing Steam library file: {e}")
+        return []
 
-    app_ids = set(re.findall(r'"apps"\s*\{([^}]+)\}', content, re.DOTALL))
-    app_ids = set(re.findall(r'"(\d+)"\s*"', ''.join(app_ids)))
-
-    return sorted([int(app_id) for app_id in app_ids if app_id.isdigit()])
-
-def process_steam_library(api_key, steam_id):
-    summary = {'total': 0, 'overwritten': 0, 'updated': 0, 'skipped': 0, 'errors': 0}
-    app_ids = parse_libraryfolders_vdf()
-    if not app_ids:
-        print("No App IDs found in Steam library.")
-        return
-
-    print(f"Found {len(app_ids)} App IDs in Steam library.")
+def get_batch_mode():
+    """Gets the batch processing mode from the user."""
     print("\nHow do you want to handle existing files?")
     print("1. Ask for each game")
     print("2. Overwrite all")
@@ -162,16 +202,15 @@ def process_steam_library(api_key, steam_id):
     print("4. Skip all")
     print("b. Back to main menu")
     choice = input("Select an option: ")
-    batch_mode = 'ask'
     if choice.lower() == 'b':
-        return
-    if choice == '2': batch_mode = 'overwrite'
-    elif choice == '3': batch_mode = 'update'
-    elif choice == '4': batch_mode = 'skip'
+        return None
+    if choice == '2': return 'overwrite'
+    elif choice == '3': return 'update'
+    elif choice == '4': return 'skip'
+    return 'ask'
 
-    for app_id in app_ids:
-        get_game_schema(api_key, steam_id, str(app_id), summary, batch_mode)
-
+def print_summary(summary):
+    """Prints a summary of the operations."""
     print("\n--- Summary ---")
     print(f"Total games processed: {summary['total']}")
     print(f"Files overwritten: {summary['overwritten']}")
@@ -179,7 +218,9 @@ def process_steam_library(api_key, steam_id):
     print(f"Files skipped: {summary['skipped']}")
     print(f"Errors: {summary['errors']}")
 
-def process_slssteam_list(api_key, steam_id):
+def handle_slssteam_list(api_key, steam_id):
+    """Processes the SLSsteam config file."""
+    clear()
     summary = {'total': 0, 'overwritten': 0, 'updated': 0, 'skipped': 0, 'errors': 0}
     try:
         with open(SLSSTEAM_CONFIG_PATH, 'r') as f: config = yaml.safe_load(f)
@@ -189,36 +230,45 @@ def process_slssteam_list(api_key, steam_id):
             return
 
         print(f"Found {len(app_ids)} App IDs in SLSsteam config.")
-        print("\nHow do you want to handle existing files?")
-        print("1. Ask for each game")
-        print("2. Overwrite all")
-        print("3. Update all")
-        print("4. Skip all")
-        print("b. Back to main menu")
-        choice = input("Select an option: ")
-        if choice.lower() == 'b':
+        batch_mode = get_batch_mode()
+        if batch_mode is None:
             return
-        batch_mode = 'ask'
-        if choice == '2': batch_mode = 'overwrite'
-        elif choice == '3': batch_mode = 'update'
-        elif choice == '4': batch_mode = 'skip'
 
         for app_id in app_ids:
             get_game_schema(api_key, steam_id, str(app_id), summary, batch_mode)
 
     except FileNotFoundError:
         print(f"Error: SLSsteam config file not found at {SLSSTEAM_CONFIG_PATH}")
-    except Exception as e:
+    except (yaml.YAMLError, Exception) as e:
         print(f"An error occurred while processing the SLSsteam config file: {e}")
     
-    print("\n--- Summary ---")
-    print(f"Total games processed: {summary['total']}")
-    print(f"Files overwritten: {summary['overwritten']}")
-    print(f"Files updated: {summary['updated']}")
-    print(f"Files skipped: {summary['skipped']}")
-    print(f"Errors: {summary['errors']}")
+    print_summary(summary)
+    input("\nPress Enter to return to the main menu.")
 
-def manual_input_mode(api_key, steam_id):
+def handle_steam_library(api_key, steam_id):
+    """Processes the Steam library."""
+    clear()
+    summary = {'total': 0, 'overwritten': 0, 'updated': 0, 'skipped': 0, 'errors': 0}
+    app_ids = parse_libraryfolders_vdf()
+    if not app_ids:
+        print("No App IDs found in Steam library.")
+        input("\nPress Enter to return to the main menu.")
+        return
+
+    print(f"Found {len(app_ids)} App IDs in Steam library.")
+    batch_mode = get_batch_mode()
+    if batch_mode is None:
+        return
+
+    for app_id in app_ids:
+        get_game_schema(api_key, steam_id, str(app_id), summary, batch_mode)
+
+    print_summary(summary)
+    input("\nPress Enter to return to the main menu.")
+
+def handle_manual_input(api_key, steam_id):
+    """Handles manual App ID input."""
+    clear()
     summary = {'total': 0, 'overwritten': 0, 'updated': 0, 'skipped': 0, 'errors': 0}
     while True:
         app_id = input("\nEnter the App ID (or 'b' to return to main menu): ")
@@ -227,76 +277,78 @@ def manual_input_mode(api_key, steam_id):
             print("Invalid App ID. Please enter a number.")
             continue
         get_game_schema(api_key, steam_id, app_id, summary)
+    
     if summary['total'] > 0:
-        print("\n--- Summary ---")
-        print(f"Total games processed: {summary['total']}")
-        print(f"Files overwritten: {summary['overwritten']}")
-        print(f"Files updated: {summary['updated']}")
-        print(f"Files skipped: {summary['skipped']}")
-        print(f"Errors: {summary['errors']}")
+        print_summary(summary)
+        input("\nPress Enter to return to the main menu.")
 
-def clear_credentials():
+def handle_clear_credentials():
+    """Clears the saved credentials."""
+    clear()
     if os.path.exists(DOTENV_PATH):
         os.remove(DOTENV_PATH)
         print("Credentials cleared. Please restart the script to set them up again.")
     else:
         print("No credentials found to clear.")
+    input("\nPress Enter to exit.")
+
+def handle_update():
+    """Updates the script."""
+    clear()
+    print("Updating...")
+    os.system("bash install.sh")
+    print("\nUpdate complete. Please restart the script.")
+    input("Press Enter to exit.")
+
+def handle_uninstall():
+    """Uninstalls the script."""
+    clear()
+    os.system("bash uninstall.sh")
+    input("\nPress Enter to exit.")
 
 def main():
+    """Main function of the script."""
+    if not check_internet_connection():
+        sys.exit(1)
+
     load_dotenv(dotenv_path=DOTENV_PATH)
     api_key = os.getenv("STEAM_API_KEY")
     steam_id = os.getenv("STEAM_USER_ID")
-
-    def clear():
-        os.system('cls' if platform.system() == 'Windows' else 'clear')
 
     if not api_key or not steam_id:
         clear()
         api_key = get_env_value("STEAM_API_KEY", "Steam API Key", "https://steamcommunity.com/dev/apikey")
         steam_id = get_env_value("STEAM_USER_ID", "Steam User ID", "https://steamid.io/", "[U:1:xxxxxxxxx]")
 
+    menu_options = {
+        '1': ('Generate from SLSsteam config', handle_slssteam_list),
+        '2': ('Scan Steam library for games', handle_steam_library),
+        '3': ('Manual App ID input', handle_manual_input),
+        '4': ('Clear Credentials', handle_clear_credentials),
+        '5': ('Update', handle_update),
+        '6': ('Uninstall', handle_uninstall),
+        'q': ('Quit', None)
+    }
+
     while True:
         clear()
         print("\n--- Steam Schema Generator ---")
-        print("1. Generate from SLSsteam config")
-        print("2. Scan Steam library for games")
-        print("3. Manual App ID input")
-        print("4. Clear Credentials")
-        print("5. Update")
-        print("6. Uninstall")
-        print("q. Quit")
+        for key, (text, _) in menu_options.items():
+            print(f"{key}. {text}")
+        
         choice = input("Select an option: ")
 
-        if choice == '1':
-            clear()
-            process_slssteam_list(api_key, steam_id)
-            input("\nPress Enter to return to the main menu.")
-        elif choice == '2':
-            clear()
-            process_steam_library(api_key, steam_id)
-            input("\nPress Enter to return to the main menu.")
-        elif choice == '3':
-            clear()
-            manual_input_mode(api_key, steam_id)
-        elif choice == '4':
-            clear()
-            clear_credentials()
-            input("\nCredentials cleared. Press Enter to exit.")
-            break
-        elif choice == '5':
-            clear()
-            print("Updating...")
-            os.system("bash install.sh")
-            print("\nUpdate complete. Please restart the script.")
-            input("Press Enter to exit.")
-            break
-        elif choice == '6':
-            clear()
-            os.system("bash uninstall.sh")
-            input("\nPress Enter to exit.")
-            break
-        elif choice.lower() == 'q':
-            break
+        if choice in menu_options:
+            text, handler = menu_options[choice]
+            if handler:
+                if choice in ['1', '2', '3']:
+                    handler(api_key, steam_id)
+                else:
+                    handler()
+                if choice in ['4', '5', '6', 'q']:
+                    break
+            else: # Quit
+                break
         else:
             clear()
             print("Invalid option.")
