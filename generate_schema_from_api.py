@@ -100,17 +100,31 @@ def get_game_schema(api_key, steam_id, app_id, summary, language, batch_mode='as
             app_id: {
                 "gamename": game_name,
                 "version": data['game']['gameVersion'],
-                "stats": {"1": {"type": "4", "id": "1", "bits": {}}}
+                "stats": {}
             }
         }
         if 'availableGameStats' in data['game'] and 'achievements' in data['game']['availableGameStats']:
-            for i, ach in enumerate(data['game']['availableGameStats']['achievements']):
-                new_schema[app_id]["stats"]["1"]["bits"][str(i)] = {
-                    "name": ach['name'], "bit": i,
+            achievements = data['game']['availableGameStats']['achievements']
+            for i, ach in enumerate(achievements):
+                block_id = (i // 32) + 1
+                bit_id = i % 32
+
+                if str(block_id) not in new_schema[app_id]["stats"]:
+                    new_schema[app_id]["stats"][str(block_id)] = {
+                        "type": "4",
+                        "id": str(block_id),
+                        "bits": {}
+                    }
+
+                new_schema[app_id]["stats"][str(block_id)]["bits"][str(bit_id)] = {
+                    "name": str(i + 1),
+                    "bit": bit_id,
                     "display": {
-                        "name": {language: ach['displayName'], "token": f"NEW_ACHIEVEMENT_1_{i}_NAME"},
-                        "desc": {language: ach.get('description', ''), "token": f"NEW_ACHIEVEMENT_1_{i}_DESC"},
-                        "hidden": str(ach['hidden']), "icon": ach['icon'].split('/')[-1], "icon_gray": ach['icongray'].split('/')[-1]
+                        "name": {language: ach['displayName'], "token": f"NEW_ACHIEVEMENT_{block_id}_{bit_id}_NAME"},
+                        "desc": {language: ach.get('description', ''), "token": f"NEW_ACHIEVEMENT_{block_id}_{bit_id}_DESC"},
+                        "hidden": str(ach['hidden']), 
+                        "icon": ach['icon'].split('/')[-1], 
+                        "icon_gray": ach['icongray'].split('/')[-1]
                     }
                 }
         
