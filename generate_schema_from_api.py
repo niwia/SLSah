@@ -10,6 +10,7 @@ import re
 import platform
 from pathlib import Path
 import socket
+import itertools
 
 DOTENV_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.env')
 DEFAULT_OUTPUT_DIR = os.path.expanduser("~/.steam/steam/appcache/stats")
@@ -370,16 +371,24 @@ def main():
         '5': ('Clear Credentials', handle_clear_credentials),
         '6': ('Update', handle_update),
         '7': ('Uninstall', handle_uninstall),
-        'q': ('Quit', None)
     }
 
+    spinner = itertools.cycle(['.', 'o', 'O', '@', '*'])
+
     while True:
+        char = next(spinner)
         clear()
-        print(f"\n--- Steam Schema Generator (Language: {language}) ---")
+        title = f"--- Steam Achievement Helper (Language: {language}) ---"
+        print(f"\n{char} {title} {char}")
+        print()
+
         for key, (text, _) in menu_options.items():
             print(f"{key}. {text}")
         
-        choice = input("Select an option: ")
+        choice = input("\nSelect an option (q for quit): ")
+
+        if choice.lower() == 'q':
+            break
 
         if choice in menu_options:
             text, handler = menu_options[choice]
@@ -392,10 +401,8 @@ def main():
                         language = new_language
                 else:
                     handler()
-                if choice in ['5', '6', '7', 'q']:
+                if choice in ['5', '6', '7']:
                     break
-            else: # Quit
-                break
         else:
             clear()
             print("Invalid option.")
