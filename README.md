@@ -58,6 +58,16 @@ Run the following command in your terminal. This will download the script, insta
 curl -L https://github.com/niwia/SLSah/raw/main/install.sh | sh
 ```
 
+### Development Version (for testing)
+
+If you want to test the latest features and bug fixes, you can install the `dev` branch version. This will be installed in a separate directory (`~/steam-schema-generator-dev`) and will not interfere with your main installation.
+
+Run the following command in your terminal:
+
+```bash
+curl -L https://github.com/niwia/SLSah/raw/dev/install_dev.sh | sh
+```
+
 ### Manual Installation
 
 If you prefer to set up the tool manually:
