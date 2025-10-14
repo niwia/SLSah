@@ -78,12 +78,12 @@ def deep_merge(source, destination):
             destination[key] = value
     return destination
 
-def get_game_schema(api_key, steam_id, app_id, summary, batch_mode='ask'):
+def get_game_schema(api_key, steam_id, app_id, summary, language, batch_mode='ask'):
     """
     Fetches the game schema from the Steam Web API and processes it.
     """
     try:
-        url = f"https://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key={api_key}&appid={app_id}"
+        url = f"https://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key={api_key}&appid={app_id}&l={language}"
         response = requests.get(url)
         response.raise_for_status()
         data = response.json()
@@ -108,8 +108,8 @@ def get_game_schema(api_key, steam_id, app_id, summary, batch_mode='ask'):
                 new_schema[app_id]["stats"]["1"]["bits"][str(i)] = {
                     "name": ach['name'], "bit": i,
                     "display": {
-                        "name": {"english": ach['displayName'], "token": f"NEW_ACHIEVEMENT_1_{i}_NAME"},
-                        "desc": {"english": ach.get('description', ''), "token": f"NEW_ACHIEVEMENT_1_{i}_DESC"},
+                        "name": {language: ach['displayName'], "token": f"NEW_ACHIEVEMENT_1_{i}_NAME"},
+                        "desc": {language: ach.get('description', ''), "token": f"NEW_ACHIEVEMENT_1_{i}_DESC"},
                         "hidden": str(ach['hidden']), "icon": ach['icon'].split('/')[-1], "icon_gray": ach['icongray'].split('/')[-1]
                     }
                 }
@@ -186,7 +186,7 @@ def parse_libraryfolders_vdf():
     print(f"Reading Steam library from: {LIBRARY_FILE}")
     try:
         content = LIBRARY_FILE.read_text()
-        app_ids = set(re.findall(r'"apps"\s*{([^}]+)}', content, re.DOTALL))
+        app_ids = set(re.findall(r'"apps"\s*\{([^}]+)\}', content, re.DOTALL))
         app_ids = set(re.findall(r'"(\d+)"\s*"', ''.join(app_ids)))
         return sorted([int(app_id) for app_id in app_ids if app_id.isdigit()])
     except Exception as e:
@@ -218,7 +218,7 @@ def print_summary(summary):
     print(f"Files skipped: {summary['skipped']}")
     print(f"Errors: {summary['errors']}")
 
-def handle_slssteam_list(api_key, steam_id):
+def handle_slssteam_list(api_key, steam_id, language):
     """Processes the SLSsteam config file."""
     clear()
     summary = {'total': 0, 'overwritten': 0, 'updated': 0, 'skipped': 0, 'errors': 0}
@@ -235,7 +235,7 @@ def handle_slssteam_list(api_key, steam_id):
             return
 
         for app_id in app_ids:
-            get_game_schema(api_key, steam_id, str(app_id), summary, batch_mode)
+            get_game_schema(api_key, steam_id, str(app_id), summary, language, batch_mode)
 
     except FileNotFoundError:
         print(f"Error: SLSsteam config file not found at {SLSSTEAM_CONFIG_PATH}")
@@ -245,7 +245,7 @@ def handle_slssteam_list(api_key, steam_id):
     print_summary(summary)
     input("\nPress Enter to return to the main menu.")
 
-def handle_steam_library(api_key, steam_id):
+def handle_steam_library(api_key, steam_id, language):
     """Processes the Steam library."""
     clear()
     summary = {'total': 0, 'overwritten': 0, 'updated': 0, 'skipped': 0, 'errors': 0}
@@ -261,12 +261,12 @@ def handle_steam_library(api_key, steam_id):
         return
 
     for app_id in app_ids:
-        get_game_schema(api_key, steam_id, str(app_id), summary, batch_mode)
+        get_game_schema(api_key, steam_id, str(app_id), summary, language, batch_mode)
 
     print_summary(summary)
     input("\nPress Enter to return to the main menu.")
 
-def handle_manual_input(api_key, steam_id):
+def handle_manual_input(api_key, steam_id, language):
     """Handles manual App ID input."""
     clear()
     summary = {'total': 0, 'overwritten': 0, 'updated': 0, 'skipped': 0, 'errors': 0}
@@ -276,7 +276,7 @@ def handle_manual_input(api_key, steam_id):
         if not app_id.isdigit():
             print("Invalid App ID. Please enter a number.")
             continue
-        get_game_schema(api_key, steam_id, app_id, summary)
+        get_game_schema(api_key, steam_id, app_id, summary, language)
     
     if summary['total'] > 0:
         print_summary(summary)
@@ -306,6 +306,33 @@ def handle_uninstall():
     os.system("bash uninstall.sh")
     input("\nPress Enter to exit.")
 
+def change_language():
+    languages = [
+        "ar", "bg", "zh-CN", "zh-TW", "cs", "da", "nl", "en", "fi", "fr", "de", "el",
+        "hu", "id", "it", "ja", "ko", "no", "pl", "pt", "pt-BR", "ro", "ru", "es",
+        "es-419", "sv", "th", "tr", "uk", "vi"
+    ]
+    
+    clear()
+    print("\n--- Change Language ---")
+    for i, lang in enumerate(languages, 1):
+        print(f"{i}. {lang}")
+    
+    choice = input("Select a language (or 'b' to go back): ")
+    if choice.lower() == 'b':
+        return None
+    
+    try:
+        index = int(choice) - 1
+        if 0 <= index < len(languages):
+            return languages[index]
+        else:
+            print("Invalid selection.")
+            return None
+    except ValueError:
+        print("Invalid input.")
+        return None
+
 def main():
     """Main function of the script."""
     if not check_internet_connection():
@@ -314,6 +341,7 @@ def main():
     load_dotenv(dotenv_path=DOTENV_PATH)
     api_key = os.getenv("STEAM_API_KEY")
     steam_id = os.getenv("STEAM_USER_ID")
+    language = 'english'
 
     if not api_key or not steam_id:
         clear()
@@ -324,15 +352,16 @@ def main():
         '1': ('Generate from SLSsteam config', handle_slssteam_list),
         '2': ('Scan Steam library for games', handle_steam_library),
         '3': ('Manual App ID input', handle_manual_input),
-        '4': ('Clear Credentials', handle_clear_credentials),
-        '5': ('Update', handle_update),
-        '6': ('Uninstall', handle_uninstall),
+        '4': ('Change Language', change_language),
+        '5': ('Clear Credentials', handle_clear_credentials),
+        '6': ('Update', handle_update),
+        '7': ('Uninstall', handle_uninstall),
         'q': ('Quit', None)
     }
 
     while True:
         clear()
-        print("\n--- Steam Schema Generator ---")
+        print(f"\n--- Steam Schema Generator (Language: {language}) ---")
         for key, (text, _) in menu_options.items():
             print(f"{key}. {text}")
         
@@ -342,10 +371,14 @@ def main():
             text, handler = menu_options[choice]
             if handler:
                 if choice in ['1', '2', '3']:
-                    handler(api_key, steam_id)
+                    handler(api_key, steam_id, language)
+                elif choice == '4':
+                    new_language = handler()
+                    if new_language:
+                        language = new_language
                 else:
                     handler()
-                if choice in ['4', '5', '6', 'q']:
+                if choice in ['5', '6', '7', 'q']:
                     break
             else: # Quit
                 break
