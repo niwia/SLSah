@@ -52,10 +52,14 @@ def get_env_value(key, prompt, help_url="", example=""):
             print("Input cannot be empty.")
             continue
 
-        if key == "STEAM_API_KEY" and len(value) < 20:
-            print("Invalid API Key. It should be at least 20 characters long.")
-            value = None
-            continue
+        # --- FIX 1: Improved API Key Validation ---
+        if key == "STEAM_API_KEY":
+            if not re.match(r'^[a-fA-F0-9]{32}$', value):
+                print("Invalid API Key format. It should be a 32-character hexadecimal string.")
+                print("Your input was not valid.")
+                value = None
+                continue
+        # --- End of Fix 1 ---
 
         if key == "STEAM_USER_ID":
             match = re.search(r'(\d+)]?$', value)
@@ -118,7 +122,9 @@ def get_game_schema(api_key, steam_id, app_id, summary, language, batch_mode='as
                     }
 
                 new_schema[app_id]["stats"][str(block_id)]["bits"][str(bit_id)] = {
-                    "name": str(i + 1),
+                    # --- FIX 2: Use Achievement API Name ---
+                    "name": ach['name'],
+                    # --- End of Fix 2 ---
                     "bit": bit_id,
                     "display": {
                         "name": {language: ach['displayName'], "token": f"NEW_ACHIEVEMENT_{block_id}_{bit_id}_NAME"},
@@ -370,7 +376,7 @@ def main():
         '4': ('Change Language', change_language),
         '5': ('Clear Credentials', handle_clear_credentials),
         '6': ('Update', handle_update),
-        '7': ('Uninstall', handle_uninstall),
+        '7.': ('Uninstall', handle_uninstall),
     }
 
     spinner = itertools.cycle(['.', 'o', 'O', '@', '*'])
