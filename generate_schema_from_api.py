@@ -11,6 +11,8 @@ import platform
 from pathlib import Path
 import socket
 import itertools
+# --- FIX: Removed 'import sls_manager' to prevent circular import ---
+from shared_utils import read_cache, write_cache, get_app_details
 
 DOTENV_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.env')
 DEFAULT_OUTPUT_DIR = os.path.expanduser("~/.steam/steam/appcache/stats")
@@ -52,14 +54,12 @@ def get_env_value(key, prompt, help_url="", example=""):
             print("Input cannot be empty.")
             continue
 
-        # --- FIX 1: Improved API Key Validation ---
         if key == "STEAM_API_KEY":
             if not re.match(r'^[a-fA-F0-9]{32}$', value):
                 print("Invalid API Key format. It should be a 32-character hexadecimal string.")
                 print("Your input was not valid.")
                 value = None
                 continue
-        # --- End of Fix 1 ---
 
         if key == "STEAM_USER_ID":
             match = re.search(r'(\d+)]?$', value)
@@ -122,9 +122,7 @@ def get_game_schema(api_key, steam_id, app_id, summary, language, batch_mode='as
                     }
 
                 new_schema[app_id]["stats"][str(block_id)]["bits"][str(bit_id)] = {
-                    # --- FIX 2: Use Achievement API Name ---
                     "name": ach['name'],
-                    # --- End of Fix 2 ---
                     "bit": bit_id,
                     "display": {
                         "name": {language: ach['displayName'], "token": f"NEW_ACHIEVEMENT_{block_id}_{bit_id}_NAME"},
@@ -205,14 +203,26 @@ def parse_libraryfolders_vdf():
         return []
 
     print(f"Reading Steam library from: {LIBRARY_FILE}")
+    
+    # --- FIX: Replaced fragile regex parsing with robust vdf parsing ---
     try:
-        content = LIBRARY_FILE.read_text()
-        app_ids = set(re.findall(r'"apps"\s*\{([^}]+)\}', content, re.DOTALL))
-        app_ids = set(re.findall(r'"(\d+)"\s*"', ''.join(app_ids)))
-        return sorted([int(app_id) for app_id in app_ids if app_id.isdigit()])
+        with open(LIBRARY_FILE, 'r') as f:
+            data = vdf.load(f)
+        
+        app_ids = set()
+        # The VDF structure is nested, like {'libraryfolders': {'0': {'apps': {...}}, '1': {'apps': {...}}}}
+        for folder_key, folder_data in data.get('libraryfolders', {}).items():
+            if isinstance(folder_data, dict):
+                # Get all keys from the 'apps' dictionary
+                for app_id in folder_data.get('apps', {}).keys():
+                    if app_id.isdigit():
+                        app_ids.add(int(app_id))
+        return sorted(list(app_ids))
     except Exception as e:
-        print(f"Error parsing Steam library file: {e}")
+        print(f"Error parsing Steam library file (VDF parse): {e}")
         return []
+    # --- END FIX ---
+
 
 def get_batch_mode():
     """Gets the batch processing mode from the user."""
@@ -224,7 +234,7 @@ def get_batch_mode():
     print("b. Back to main menu")
     choice = input("Select an option: ")
     if choice.lower() == 'b':
-        return None
+        return 'b'
     if choice == '2': return 'overwrite'
     elif choice == '3': return 'update'
     elif choice == '4': return 'generate_new'
@@ -252,9 +262,27 @@ def handle_slssteam_list(api_key, steam_id, language):
             input("\nPress Enter to return to the main menu.")
             return
 
+        # --- NEW CACHING LOGIC ---
+        print("Checking for app details cache updates...")
+        cache = read_cache()
+        missing_ids = [app_id for app_id in app_ids if str(app_id) not in cache]
+        if missing_ids:
+            print(f"Found {len(missing_ids)} apps not in cache. Fetching details...")
+            cache_modified = False
+            for app_id in missing_ids:
+                _, modified = get_app_details(app_id, cache)
+                if modified:
+                    cache_modified = True
+            if cache_modified:
+                write_cache(cache)
+                print("Cache updated.")
+        else:
+            print("App details cache is up to date.")
+        # --- END NEW CACHING LOGIC ---
+
         print(f"Found {len(app_ids)} App IDs in SLSsteam config.")
         batch_mode = get_batch_mode()
-        if batch_mode is None:
+        if batch_mode is None or batch_mode == 'b':
             return
 
         for app_id in app_ids:
@@ -264,10 +292,8 @@ def handle_slssteam_list(api_key, steam_id, language):
                     print(f"Schema for {app_id} already exists, skipping.")
                     summary['skipped'] += 1
                     continue
-                # If it doesn't exist, proceed to generate using 'overwrite' mode to avoid asking again.
                 get_game_schema(api_key, steam_id, str(app_id), summary, language, 'overwrite')
             else:
-                # Use the batch mode selected by the user (ask, overwrite, update, skip)
                 get_game_schema(api_key, steam_id, str(app_id), summary, language, batch_mode)
 
     except FileNotFoundError:
@@ -290,7 +316,7 @@ def handle_steam_library(api_key, steam_id, language):
 
     print(f"Found {len(app_ids)} App IDs in Steam library.")
     batch_mode = get_batch_mode()
-    if batch_mode is None:
+    if batch_mode is None or batch_mode == 'b':
         return
 
     for app_id in app_ids:
@@ -314,6 +340,12 @@ def handle_manual_input(api_key, steam_id, language):
     if summary['total'] > 0:
         print_summary(summary)
         input("\nPress Enter to return to the main menu.")
+
+def handle_sls_manager():
+    """Calls the main function of the SLSsteam Config Manager."""
+    # This deferred import is correct and prevents the circular dependency
+    import sls_manager 
+    sls_manager.main()
 
 def handle_clear_credentials():
     """Clears the saved credentials."""
@@ -495,7 +527,6 @@ def handle_purge_menu(steam_id):
             print("Invalid option.")
             input("\nPress Enter to continue.")
 
-
 def handle_update():
     """Updates the script."""
     clear()
@@ -556,11 +587,12 @@ def main():
         '1': ('Generate from SLSsteam config', handle_slssteam_list),
         '2': ('Scan Steam library for games', handle_steam_library),
         '3': ('Manual App ID input', handle_manual_input),
-        '4': ('Change Language', change_language),
-        '5': ('Purge generated schemas', handle_purge_menu),
-        '6': ('Clear Credentials', handle_clear_credentials),
-        '7': ('Update', handle_update),
-        '8': ('Uninstall', handle_uninstall),
+        '4': ('Manage SLSsteam App List', handle_sls_manager),
+        '5': ('Change Language', change_language),
+        '6': ('Purge generated schemas', handle_purge_menu),
+        '7': ('Clear Credentials', handle_clear_credentials),
+        '8': ('Update', handle_update),
+        '9': ('Uninstall', handle_uninstall),
     }
 
     spinner = itertools.cycle(['.', 'o', 'O', '@', '*'])
@@ -586,14 +618,17 @@ def main():
                 if choice in ['1', '2', '3']:
                     handler(api_key, steam_id, language)
                 elif choice == '4':
+                    handler()
+                elif choice == '5':
                     new_language = handler()
                     if new_language:
                         language = new_language
-                elif choice == '5':
+                elif choice == '6':
                     handler(steam_id)
                 else:
                     handler()
-                if choice in ['6', '7', '8']: # Exit after these
+
+                if choice in ['7', '8', '9']: # Exit after these
                     break
         else:
             clear()
