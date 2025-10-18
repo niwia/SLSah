@@ -220,14 +220,14 @@ def get_batch_mode():
     print("1. Ask for each game")
     print("2. Overwrite all")
     print("3. Update all")
-    print("4. Skip all")
+    print("4. Generate for new apps only")
     print("b. Back to main menu")
     choice = input("Select an option: ")
     if choice.lower() == 'b':
         return None
     if choice == '2': return 'overwrite'
     elif choice == '3': return 'update'
-    elif choice == '4': return 'skip'
+    elif choice == '4': return 'generate_new'
     return 'ask'
 
 def print_summary(summary):
@@ -244,10 +244,12 @@ def handle_slssteam_list(api_key, steam_id, language):
     clear()
     summary = {'total': 0, 'overwritten': 0, 'updated': 0, 'skipped': 0, 'errors': 0}
     try:
-        with open(SLSSTEAM_CONFIG_PATH, 'r') as f: config = yaml.safe_load(f)
+        with open(SLSSTEAM_CONFIG_PATH, 'r') as f:
+            config = yaml.safe_load(f)
         app_ids = config.get('AdditionalApps', [])
         if not app_ids:
             print("No App IDs found in SLSsteam config file.")
+            input("\nPress Enter to return to the main menu.")
             return
 
         print(f"Found {len(app_ids)} App IDs in SLSsteam config.")
@@ -256,7 +258,17 @@ def handle_slssteam_list(api_key, steam_id, language):
             return
 
         for app_id in app_ids:
-            get_game_schema(api_key, steam_id, str(app_id), summary, language, batch_mode)
+            if batch_mode == 'generate_new':
+                schema_filename = os.path.join(DEFAULT_OUTPUT_DIR, f"UserGameStatsSchema_{app_id}.bin")
+                if os.path.exists(schema_filename):
+                    print(f"Schema for {app_id} already exists, skipping.")
+                    summary['skipped'] += 1
+                    continue
+                # If it doesn't exist, proceed to generate using 'overwrite' mode to avoid asking again.
+                get_game_schema(api_key, steam_id, str(app_id), summary, language, 'overwrite')
+            else:
+                # Use the batch mode selected by the user (ask, overwrite, update, skip)
+                get_game_schema(api_key, steam_id, str(app_id), summary, language, batch_mode)
 
     except FileNotFoundError:
         print(f"Error: SLSsteam config file not found at {SLSSTEAM_CONFIG_PATH}")
@@ -312,6 +324,177 @@ def handle_clear_credentials():
     else:
         print("No credentials found to clear.")
     input("\nPress Enter to exit.")
+
+def delete_files_for_appids(app_ids, steam_id, source_name):
+    """Deletes schema and stats files for a given list of App IDs."""
+    if not app_ids:
+        print(f"No App IDs found from {source_name} to purge.")
+        return
+
+    files_to_delete = []
+    app_ids_found = set()
+    for app_id in app_ids:
+        app_id = str(app_id)  # Ensure it's a string
+        schema_file = os.path.join(DEFAULT_OUTPUT_DIR, f"UserGameStatsSchema_{app_id}.bin")
+        stats_file = os.path.join(DEFAULT_OUTPUT_DIR, f"UserGameStats_{steam_id}_{app_id}.bin")
+        
+        if os.path.exists(schema_file):
+            files_to_delete.append(schema_file)
+            app_ids_found.add(app_id)
+        if os.path.exists(stats_file):
+            files_to_delete.append(stats_file)
+            app_ids_found.add(app_id)
+
+    if not files_to_delete:
+        print(f"No generated files found for the App IDs from {source_name}.")
+        return
+
+    print(f"Found {len(files_to_delete)} file(s) to delete for {len(app_ids_found)} App ID(s) from {source_name}.")
+    print("This action is irreversible.")
+    choice = input("Are you sure you want to proceed? (y/n): ").lower()
+
+    if choice != 'y':
+        print("\nPurge operation cancelled.")
+        return
+
+    deleted_count = 0
+    error_count = 0
+    for filepath in files_to_delete:
+        try:
+            os.remove(filepath)
+            deleted_count += 1
+        except OSError as e:
+            print(f"Error deleting file {filepath}: {e}")
+            error_count += 1
+    
+    print(f"\nSuccessfully deleted {deleted_count} files.")
+    if error_count > 0:
+        print(f"Failed to delete {error_count} files.")
+
+def handle_purge_manual(steam_id):
+    """Handles manual App ID input for purging."""
+    clear()
+    print("--- Purge by Manual App ID ---")
+    app_id_input = input("Enter the App ID to purge (or 'b' to go back): ")
+    if app_id_input.lower() == 'b':
+        return
+    if not app_id_input.isdigit():
+        print("Invalid App ID. Please enter a number.")
+    else:
+        delete_files_for_appids([app_id_input], steam_id, "manual input")
+    input("\nPress Enter to continue.")
+
+def handle_purge_slssteam(steam_id):
+    """Purges files based on the SLSsteam config file."""
+    clear()
+    print("--- Purge from SLSsteam config ---")
+    try:
+        with open(SLSSTEAM_CONFIG_PATH, 'r') as f:
+            config = yaml.safe_load(f)
+        app_ids = config.get('AdditionalApps', [])
+        if app_ids:
+            delete_files_for_appids(app_ids, steam_id, "SLSsteam config")
+        else:
+            print("No App IDs found in SLSsteam config file.")
+    except FileNotFoundError:
+        print(f"Error: SLSsteam config file not found at {SLSSTEAM_CONFIG_PATH}")
+    except (yaml.YAMLError, Exception) as e:
+        print(f"An error occurred: {e}")
+    input("\nPress Enter to continue.")
+
+def handle_purge_steam_library(steam_id):
+    """Purges files based on the Steam library."""
+    clear()
+    print("--- Purge from Steam Library ---")
+    app_ids = parse_libraryfolders_vdf()
+    if app_ids:
+        delete_files_for_appids(app_ids, steam_id, "Steam library")
+    else:
+        print("Could not find any App IDs in the Steam library.")
+    input("\nPress Enter to continue.")
+
+def purge_all():
+    """Deletes all generated UserGameStats files from the output directory."""
+    clear()
+    print("--- Purge ALL Generated Schema Files ---")
+
+    if not os.path.isdir(DEFAULT_OUTPUT_DIR):
+        print(f"Output directory not found at: {DEFAULT_OUTPUT_DIR}")
+        print("No files to delete.")
+        input("\nPress Enter to continue.")
+        return
+
+    files_to_delete = []
+    try:
+        for filename in os.listdir(DEFAULT_OUTPUT_DIR):
+            full_path = os.path.join(DEFAULT_OUTPUT_DIR, filename)
+            if not os.path.isfile(full_path):
+                continue
+
+            if (filename.startswith("UserGameStatsSchema_") and filename.endswith(".bin")) or \
+               (re.match(r'UserGameStats_(\d+)_(\d+)\.bin', filename)):
+                files_to_delete.append(full_path)
+    except FileNotFoundError:
+        print(f"Could not access directory: {DEFAULT_OUTPUT_DIR}")
+        input("\nPress Enter to continue.")
+        return
+
+    if not files_to_delete:
+        print("No generated schema or stats files found to delete.")
+        input("\nPress Enter to continue.")
+        return
+
+    print(f"Found {len(files_to_delete)} generated files to delete in:")
+    print(DEFAULT_OUTPUT_DIR)
+    print("\nWARNING: This action is irreversible and will delete ALL generated schema and stats files.")
+    
+    choice = input("Are you sure you want to proceed? (y/n): ").lower()
+
+    if choice == 'y':
+        deleted_count = 0
+        error_count = 0
+        for filepath in files_to_delete:
+            try:
+                os.remove(filepath)
+                deleted_count += 1
+            except OSError as e:
+                print(f"Error deleting file {filepath}: {e}")
+                error_count += 1
+        
+        print(f"\nSuccessfully deleted {deleted_count} files.")
+        if error_count > 0:
+            print(f"Failed to delete {error_count} files.")
+    else:
+        print("\nPurge operation cancelled.")
+    input("\nPress Enter to continue.")
+
+def handle_purge_menu(steam_id):
+    """Displays the purge menu and handles user selection."""
+    while True:
+        clear()
+        print("\n--- Purge Generated Files Menu ---")
+        print("1. Purge by manual App ID")
+        print("2. Purge based on SLSsteam config")
+        print("3. Purge based on Steam library")
+        print("4. Purge ALL generated files")
+        print("b. Back to main menu")
+        
+        choice = input("\nSelect an option: ")
+
+        if choice == '1':
+            handle_purge_manual(steam_id)
+        elif choice == '2':
+            handle_purge_slssteam(steam_id)
+        elif choice == '3':
+            handle_purge_steam_library(steam_id)
+        elif choice == '4':
+            purge_all()
+        elif choice.lower() == 'b':
+            break
+        else:
+            print("Invalid option.")
+            input("\nPress Enter to continue.")
+
 
 def handle_update():
     """Updates the script."""
@@ -374,9 +557,10 @@ def main():
         '2': ('Scan Steam library for games', handle_steam_library),
         '3': ('Manual App ID input', handle_manual_input),
         '4': ('Change Language', change_language),
-        '5': ('Clear Credentials', handle_clear_credentials),
-        '6': ('Update', handle_update),
-        '7.': ('Uninstall', handle_uninstall),
+        '5': ('Purge generated schemas', handle_purge_menu),
+        '6': ('Clear Credentials', handle_clear_credentials),
+        '7': ('Update', handle_update),
+        '8': ('Uninstall', handle_uninstall),
     }
 
     spinner = itertools.cycle(['.', 'o', 'O', '@', '*'])
@@ -405,9 +589,11 @@ def main():
                     new_language = handler()
                     if new_language:
                         language = new_language
+                elif choice == '5':
+                    handler(steam_id)
                 else:
                     handler()
-                if choice in ['5', '6', '7']:
+                if choice in ['6', '7', '8']: # Exit after these
                     break
         else:
             clear()
