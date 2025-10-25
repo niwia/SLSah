@@ -3,3 +3,5 @@
 __pycache__/
 *.pyc
 new_files/
+UserGameStats_steamid_appid.bin
+.qodo/
