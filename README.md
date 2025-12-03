@@ -1,130 +1,95 @@
-# Steam Schema Generator
+# SLS-AH (SLSsteam Achievement Helper)
 
-This tool allows you to generate `UserGameStatsSchema` and `UserGameStats` files for Steam games using the Steam Web API.
+A tool to generate `UserGameStatsSchema` and `UserGameStats` files for Steam games using the Steam Web API, designed for Linux/Steamdeck and the `SLSsteam` client.
+
+This tool helps you unlock achievements in games that do not have proper schema files, by fetching the necessary achievement data directly from Steam.
+
+---
 
 ## Features
 
-*   **Interactive UI:** A simple and easy-to-use terminal interface.
-*   **Multiple Game Sources:** Generate schemas from your `SLSsteam` config, by scanning your Steam library, or by manual App ID input.
-*   **API Key & User ID Management:** Securely saves your Steam API key and User ID so you only have to enter them once.
-*   **Smart File Handling:** Intelligently handles existing files with options to overwrite, update (merge new achievements), or skip.
-*   **Game Name Display:** Shows the name of the game being processed.
-*   **Summary Report:** Provides a summary of the operations performed.
+*   **Interactive UI:** A simple and easy-to-use terminal interface for a smooth workflow.
+*   **Multiple Game Sources:**
+    *   Scan your `SLSsteam` config file.
+    *   Scan your main Steam library.
+    *   Enter a Steam App ID manually.
+*   **API Key & User ID Management:** Securely saves your Steam Web API key and User ID in a local `.env` file so you only have to enter them once.
+*   **Smart File Handling:** Intelligently handles existing schema files with options to:
+    *   **Overwrite:** Replace the existing file completely.
+    *   **Update:** Merge new achievements into the existing file.
+    *   **Skip:** Do nothing if a file already exists.
+*   **Game Name Display:** Shows the name of the game being processed for clarity.
+*   **Summary Report:** Provides a summary of all operations performed at the end of the process.
+
+---
 
 ## Configuration
 
-During the first run, the script will prompt you for your Steam Web API Key and your Steam User ID. These are saved in a local `.env` file in the script's directory, so you only need to enter them once.
+On the first run, the script will prompt you for your **Steam Web API Key** and your **Steam User ID**.
 
 ### Steam Web API Key
-
-**Important:** You can use an API key from any Steam account. It does not need to be from your primary account. This key is only used to fetch public achievement data and is not linked to your account for any other purpose.
+You can get a key from any Steam account; it does not need to be from your primary account.
 
 1.  Go to the Steam API Key page: [https://steamcommunity.com/dev/apikey](https://steamcommunity.com/dev/apikey)
-2.  You will be asked for a domain name. This does not matter, you can enter any value (e.g., `localhost`).
-3.  Once you agree to the terms, you will be given a key. Copy this key for the script setup.
+2.  Enter any domain name (e.g., `localhost`) and agree to the terms.
+3.  Copy the generated key.
 
 <img src="thumbnails/webapi.png" alt="Steam Web API Key" width="500"/>
 
 ### Steam User ID
+It's important to use your own Steam User ID so the generated files are correctly associated with your profile.
 
-It is important to use your own Steam User ID. This ID is used to name the generated stats file (e.g., `UserGameStats_{YourID}_{AppID}.bin`), which allows the Steam client to correctly associate the achievement data with your profile.
-
-**Important:** Some tools or websites might give you an ID in the format `[U:1:11223344]`. The script is smart enough to handle this, but the number you need is the last part, e.g., `11223344`.
-
-There are several ways to find your ID. The easiest is through the Steam client:
-
-1.  In the Steam client, open your "Friends & Chat" window.
-
-    <img src="thumbnails/friends1.png" alt="Friends & Chat" width="300"/>
+The easiest way to find your ID is in the Steam client:
+1.  Open the "Friends & Chat" window.
 2.  Click "Add a Friend".
+3.  Your Account ID is displayed at the top.
 
-    <img src="thumbnails/friends2.png" alt="Add a Friend" width="500"/>
-3.  Your Account ID is displayed at the top. This is the number you need to copy for the script setup.
+<img src="thumbnails/steamaid.png" alt="Steam Account ID" width="500"/>
 
-    <img src="thumbnails/steamaid.png" alt="Steam Account ID" width="500"/>
-
-Alternatively, you can use websites like [SteamDB](https://steamdb.info/) (look for `steam3ID`) or [SteamID.io](https://steamid.io/).
-
-<img src="thumbnails/steamdb.png" alt="SteamDB Profile" width="500"/>
-<img src="thumbnails/steamid.png" alt="SteamID.io Profile" width="500"/>
+---
 
 ## Installation
 
 ### Easy Installer (Recommended)
 
-Run the following command in your terminal. This will download the script, install dependencies, and create a desktop shortcut.
+Run the following command in your terminal. This will download the tool, install dependencies, and create a desktop shortcut.
 
 ```bash
 curl -L https://github.com/niwia/SLSah/raw/main/install.sh | sh
 ```
 
-### Development Version (for testing)
+### Development Version
 
-If you want to test the latest features and bug fixes, you can install the `dev` branch version. This will be installed in a separate directory (`~/steam-schema-generator-dev`) and will not interfere with your main installation.
-
-Run the following command in your terminal:
+To test the latest features from the `dev` branch, run this command. It will be installed in a separate directory (`~/steam-schema-generator-dev`).
 
 ```bash
 curl -L https://github.com/niwia/SLSah/raw/dev/install_dev.sh | sh
 ```
 
-### Manual Installation
-
-If you prefer to set up the tool manually:
-
-1.  Clone or download this repository.
-2.  Install the required Python packages:
-    ```bash
-    pip install -r requirements.txt
-    ```
+---
 
 ## Usage
 
-*   **Installer:** If you used the installer, simply double-click the "Steam Schema Generator" icon on your desktop to run the tool.
-*   **Manual:** If you installed manually, you can run the script directly from your terminal:
+*   **Desktop Shortcut:** If you used the installer, double-click the "SLS-AH" icon on your desktop.
+*   **Manual:** To run the script manually from your terminal:
     ```bash
     python3 generate_schema_from_api.py
     ```
 
-## Updating
+---
 
-There are two ways to update the tool to the latest version:
+## Updating & Uninstalling
 
-1.  **From the Main Menu:** Simply select the "Update" option from the main menu of the tool.
-2.  **From the Terminal:** Run the installer command again.
+You can **update** or **uninstall** the tool directly from its main menu.
 
-In both cases, the script will automatically fetch the latest files while preserving your settings.
+Alternatively, you can re-run the installer command to update, or run the `uninstall.sh` script in the installation directory (`~/steam-schema-generator`) to uninstall.
 
-```bash
-curl -L https://github.com/niwia/SLSah/raw/main/install.sh | sh
-```
-
-## Uninstalling
-
-There are two ways to uninstall the tool:
-
-1.  **From the Main Menu:** Simply select the "Uninstall" option from the main menu of the tool.
-2.  **From the Terminal:** Run the `uninstall.sh` script.
-    1.  Open a terminal.
-    2.  Navigate to the installation directory:
-        ```bash
-        cd ~/steam-schema-generator
-        ```
-    3.  Run the uninstaller:
-        ```bash
-        bash uninstall.sh
-        ```
-
-This will remove the application and the desktop shortcut. Your generated schema files in the Steam directory will not be deleted.
-
-## Alternatives
-
-If you prefer a tool that uses your Steam login credentials instead of a Steam Web API key, you can check out [SLScheevo](https://github.com/xamionex/SLScheevo). It is another excellent tool that achieves a similar goal but uses a different authentication method.
+---
 
 ## Credits and License
 
 This tool was developed with the assistance of Google's Gemini AI. It is a heavily modified version of the original `generate_emu_config_old` tool from the [gbe_fork_tools](https://github.com/Detanup01/gbe_fork_tools) repository by [Detanup01](https://github.com/Detanup01).
 
-This tool also integrates with [SLSsteam](https://github.com/AceSLS/SLSsteam) by [AceSLS](https://github.com/AceSLS) to provide a more automated workflow.
+This tool also integrates with [SLSsteam](https://github.com/AceSLS/SLSsteam) by [AceSLS](https://github.com/AceSLS).
 
-This project is licensed under the **GNU Lesser General Public License v3.0**, the same license as the original project. You can find a copy of the license in the `LICENSE` file.
+This project is licensed under the **GNU Lesser General Public License v3.0**.
