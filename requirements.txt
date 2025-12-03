@@ -4,3 +4,7 @@ requests
 certifi
 python-dotenv
 PyYAML
+httpx
+tqdm
+pycryptodome
+rich
