@@ -13,7 +13,7 @@ from rich.table import Table
 
 # Import the generator script to use its functions
 import generate_schema_from_api as achievement_generator
-from shared_utils import read_cache, write_cache, get_app_details, CACHE_FILE_PATH
+from shared_utils import read_cache, write_cache, get_app_details, get_env_value, CACHE_FILE_PATH
 
 # --- Rich Console Initialization ---
 console = Console()
@@ -23,6 +23,8 @@ SLSSTEAM_CONFIG_DIR = os.path.expanduser("~/.config/SLSsteam")
 SLSSTEAM_CONFIG_PATH = os.path.join(SLSSTEAM_CONFIG_DIR, "config.yaml")
 BACKUP_DIR = os.path.join(SLSSTEAM_CONFIG_DIR, "backup")
 ONETIME_MSG_FLAG = os.path.join(SLSSTEAM_CONFIG_DIR, ".online_fix_msg_shown")
+SCHEMA_OUTPUT_DIR = os.path.expanduser("~/.steam/steam/appcache/stats")
+
 
 
 # --- Basic Functions ---
@@ -160,6 +162,7 @@ def handle_add_game(cache):
         app_details_list, modified = get_all_app_details(cache, list(new_app_ids))
         if modified: cache_modified_in_session = True
         
+        clear()
         console.print("\nYou are about to add the following:")
         for app in app_details_list: console.print(f"- {app['name']} ([cyan]{app['id']}[/cyan]) - Type: [green]{app['type']}[/green]")
 
@@ -171,15 +174,22 @@ def handle_add_game(cache):
         final_app_list = list(current_app_ids | new_app_ids)
         if write_yaml_section('AdditionalApps', final_app_list):
             console.print(f"\n[green]Successfully added {len(new_app_ids)} app(s).[/green]")
-            api_key = achievement_generator.get_env_value("STEAM_API_KEY", "Steam API Key", "https://steamcommunity.com/dev/apikey")
-            steam_id = achievement_generator.get_env_value("STEAM_USER_ID", "Steam User ID", "https://steamid.io/", "[U:1:xxxxxxxxx]")
+            console.input("\nPress Enter to continue to post-add options.")
+
+            api_key = get_env_value("STEAM_API_KEY", "Steam API Key", "https://steamcommunity.com/dev/apikey")
+            steam_id = get_env_value("STEAM_USER_ID", "Steam User ID", "https://steamid.io/", "[U:1:xxxxxxxxx]")
             
             for app in app_details_list:
+                clear()
                 console.rule(f"[bold]Post-add options for {app['name']}[/bold]")
                 if console.input(f"Generate achievement schema for [cyan]{app['name']}[/cyan]? (y/n): ").lower() == 'y':
                     summary = {'total': 0, 'errors': 0, 'skipped': 0, 'updated': 0, 'overwritten': 0}
                     achievement_generator.get_game_schema(api_key, steam_id, str(app['id']), summary, 'english', 'ask')
                     achievement_generator.print_summary(summary)
+                    console.input("\nPress Enter to continue.")
+                
+                clear()
+                console.rule(f"[bold]Post-add options for {app['name']}[/bold]")
                 if console.input(f"Attempt to enable online multiplayer for [cyan]{app['name']}[/cyan]? (y/n): ").lower() == 'y':
                     overrides = read_yaml_section('FakeAppIds', {})
                     overrides[app['id']] = 480
@@ -188,56 +198,140 @@ def handle_add_game(cache):
             inform_manual_restart()
         else:
             console.print("[bold red]Failed to write to config file.[/bold red]")
+        
         console.input("\nPress Enter to add more, or 'b' to go back.")
     return cache_modified_in_session
 
+def delete_schema_files(app_ids_to_remove, steam_id):
+    """Deletes schema and stats files for a given list of App IDs."""
+    if not steam_id:
+        console.print("[yellow]Could not determine Steam User ID. Skipping schema file deletion.[/yellow]")
+        return 0
+    
+    deleted_count = 0
+    for app_id in app_ids_to_remove:
+        app_id_str = str(app_id)
+        schema_file = os.path.join(SCHEMA_OUTPUT_DIR, f"UserGameStatsSchema_{app_id_str}.bin")
+        stats_file = os.path.join(SCHEMA_OUTPUT_DIR, f"UserGameStats_{steam_id}_{app_id_str}.bin")
+        
+        for file_path in [schema_file, stats_file]:
+            if os.path.exists(file_path):
+                try:
+                    os.remove(file_path)
+                    console.print(f"Removed {os.path.basename(file_path)}")
+                    deleted_count += 1
+                except OSError as e:
+                    console.print(f"[bold red]Error deleting file {os.path.basename(file_path)}: {e}[/bold red]")
+    return deleted_count
+
 def handle_remove_game(cache):
-    clear(); console.print("[bold]--- Remove an Added Game/DLC ---[/bold]")
-    current_app_ids = read_yaml_section('AdditionalApps', [])
-    if not current_app_ids:
-        console.print("[yellow]No games to remove.[/yellow]"); console.input(); return False
+    while True:
+        clear()
+        console.print("[bold]--- Remove an Added Game/DLC ---[/bold]\n")
+        console.print("1. Remove by App ID")
+        console.print("2. List all added games to select from")
+        console.print("b. Back to main menu")
+        choice = console.input("\nSelect an option: ").strip()
 
-    app_details_list, _ = get_all_app_details(cache, current_app_ids)
-    app_details_list.sort(key=lambda x: x['name'])
-    
-    for i, details in enumerate(app_details_list): console.print(f"{i + 1}. {details['name']} ([cyan]{details['id']}[/cyan])")
-    
-    choice_str = console.input("\nSelect game(s) to remove (comma or space separated, 'b' to back): ").strip()
-    if choice_str.lower() == 'b': return False
+        if choice.lower() == 'b':
+            return False
 
-    try:
-        selected_indices = {int(s.strip()) - 1 for s in choice_str.replace(',', ' ').split() if s.strip().isdigit()}
-        
-        apps_to_remove = []
-        valid_indices = set()
-        for i in selected_indices:
-            if 0 <= i < len(app_details_list):
-                apps_to_remove.append(app_details_list[i])
-                valid_indices.add(i)
-        
-        if not apps_to_remove:
-            console.print("[red]No valid selections made.[/red]"); console.input(); return False
+        current_app_ids = read_yaml_section('AdditionalApps', [])
+        if not current_app_ids:
+            console.print("[yellow]No games to remove.[/yellow]"); console.input(); return False
 
-        console.print("\nYou are about to remove:")
-        for app in apps_to_remove:
+        ids_to_remove = set()
+
+        if choice == '1':
+            clear(); console.print("[bold]--- Remove by App ID ---[/bold]")
+            app_id_input = console.input("Enter App ID(s) to remove (comma or space separated): ").strip()
+            raw_ids = {int(id_str) for id_str in app_id_input.replace(',', ' ').split() if id_str.isdigit()}
+            
+            for an_id in raw_ids:
+                if an_id in current_app_ids:
+                    ids_to_remove.add(an_id)
+                else:
+                    console.print(f"[yellow]Warning: App ID {an_id} is not in the 'AdditionalApps' list.[/yellow]")
+            
+            if not ids_to_remove:
+                console.input("\nNo valid App IDs to remove were entered. Press Enter to continue.")
+                continue
+
+        elif choice == '2':
+            clear(); console.print("[bold]--- Select from List ---[/bold]")
+            app_details_list, _ = get_all_app_details(cache, current_app_ids)
+            app_details_list.sort(key=lambda x: x['name'])
+            
+            for i, details in enumerate(app_details_list):
+                console.print(f"{i + 1}. {details['name']} ([cyan]{details['id']}[/cyan])")
+            
+            choice_str = console.input("\nSelect game(s) to remove (comma/space separated, 'a' for all, 'b' to back): ").strip()
+            if choice_str.lower() == 'b': continue
+            
+            selected_indices = set()
+            if choice_str.lower() == 'a':
+                selected_indices = range(len(app_details_list))
+            else:
+                try:
+                    selected_indices = {int(s.strip()) - 1 for s in choice_str.replace(',', ' ').split() if s.strip().isdigit()}
+                except (ValueError, IndexError):
+                    console.print("[bold red]Invalid selection format.[/bold red]"); console.input(); continue
+            
+            for i in selected_indices:
+                if 0 <= i < len(app_details_list):
+                    ids_to_remove.add(app_details_list[i]['id'])
+            
+            if not ids_to_remove:
+                console.print("[red]No valid selections made.[/red]"); console.input(); continue
+        else:
+            console.print("[bold red]Invalid option.[/bold red]"); console.input(); continue
+
+        if not ids_to_remove:
+            console.input("\nNo games selected for removal. Press Enter to continue.")
+            continue
+
+        apps_to_remove_details, _ = get_all_app_details(cache, list(ids_to_remove))
+
+        clear()
+        console.print("\nYou are about to remove the following from 'AdditionalApps':")
+        for app in apps_to_remove_details:
             console.print(f"- {app['name']} ([cyan]{app['id']}[/cyan])")
 
-        if console.input(f"\nProceed with removing {len(apps_to_remove)} game(s)? (y/n): ").lower() == 'y':
-            if not backup_config(): console.input(); return False
-            
-            ids_to_remove = {app['id'] for app in apps_to_remove}
-            final_app_ids = [id for id in current_app_ids if id not in ids_to_remove]
+        if console.input(f"\nProceed with removing {len(ids_to_remove)} game(s)? (y/n): ").lower() != 'y':
+            console.print("[yellow]Remove operation cancelled.[/yellow]"); console.input(); continue
 
-            if write_yaml_section('AdditionalApps', final_app_ids):
-                console.print(f"[green]Successfully removed {len(ids_to_remove)} game(s).[/green]")
-                inform_manual_restart()
-        else:
-            console.print("[yellow]Remove operation cancelled.[/yellow]")
+        if not backup_config(): console.input(); continue
+        
+        # Ask about online fix
+        online_fixes_removed = False
+        overrides = read_yaml_section('FakeAppIds', {})
+        overrides_to_remove = [app_id for app_id in ids_to_remove if app_id in overrides]
+        if overrides_to_remove:
+            if console.input(f"\nAlso remove online multiplayer fix for these {len(overrides_to_remove)} game(s)? (y/n): ").lower() == 'y':
+                for app_id in overrides_to_remove:
+                    del overrides[app_id]
+                write_yaml_section('FakeAppIds', overrides)
+                online_fixes_removed = True
+                console.print(f"[green]Removed {len(overrides_to_remove)} online fix(es).[/green]")
 
-    except (ValueError, IndexError):
-        console.print("[bold red]Invalid selection format.[/bold red]")
-    
-    console.input()
+        # Ask about schema files
+        schemas_removed = False
+        if console.input("\nAlso remove generated achievement schema files for these games? (y/n): ").lower() == 'y':
+            steam_id = get_env_value("STEAM_USER_ID", "Steam User ID", "https://steamid.io/", "[U:1:xxxxxxxxx]")
+            deleted_count = delete_schema_files(ids_to_remove, steam_id)
+            if deleted_count > 0:
+                schemas_removed = True
+                console.print(f"[green]Removed {deleted_count} schema file(s).[/green]")
+
+        # Remove from AdditionalApps
+        final_app_ids = [id for id in current_app_ids if id not in ids_to_remove]
+        write_yaml_section('AdditionalApps', final_app_ids)
+        console.print(f"\n[green]Successfully removed {len(ids_to_remove)} game(s) from the 'AdditionalApps' list.[/green]")
+
+        if online_fixes_removed or schemas_removed:
+            inform_manual_restart()
+
+        console.input("\nPress Enter to return to the remove menu.")
     return True
 
 # --- "Network Overrides" (FakeAppIds) Logic ---

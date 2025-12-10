@@ -14,7 +14,7 @@ from rich.console import Console
 from rich.table import Table
 
 # --- FIX: Removed 'import sls_manager' to prevent circular import ---
-from shared_utils import read_cache, write_cache, get_app_details
+from shared_utils import read_cache, write_cache, get_app_details, get_env_value
 
 # --- Rich Console Initialization ---
 console = Console()
@@ -37,40 +37,6 @@ def check_internet_connection(host="8.8.8.8", port=53, timeout=3):
     except socket.error:
         console.print("[bold red]No internet connection. Please check your network settings.[/bold red]")
         return False
-
-def get_env_value(key, prompt, help_url="", example=""):
-    """Gets a value from the .env file, or prompts the user for it if it doesn't exist."""
-    load_dotenv(dotenv_path=DOTENV_PATH)
-    value = os.getenv(key)
-
-    while not value:
-        console.print(f"\n[yellow]{prompt} not found.[/yellow]")
-        if help_url:
-            console.print(f"You can get one from: [cyan]{help_url}[/cyan]")
-        if example:
-            console.print(f"Example format: [dim]{example}[/dim]")
-            
-        value = console.input(f"Please enter your [bold yellow]{prompt}[/bold yellow]: ").strip()
-
-        if not value:
-            console.print("[bold red]Input cannot be empty.[/bold red]")
-            continue
-
-        if key == "STEAM_API_KEY":
-            if not re.match(r'^[a-fA-F0-9]{32}$', value):
-                console.print("[bold red]Invalid API Key format. It should be a 32-character hexadecimal string.[/bold red]")
-                value = None
-                continue
-
-        if key == "STEAM_USER_ID":
-            match = re.search(r'(\d+)]?$', value)
-            if match:
-                value = match.group(1)
-
-        set_key(DOTENV_PATH, key, value)
-        console.print(f"[green]{prompt} saved to .env file.[/green]")
-
-    return value
 
 def deep_merge(source, destination):
     """Recursively merges two dictionaries."""
@@ -510,34 +476,19 @@ def handle_uninstall():
     os.system("bash uninstall.sh")
     console.input("\nPress Enter to exit.")
 
-def change_language():
-    # This function can also be improved with a rich selection menu later if desired
-    languages = ["ar", "bg", "zh-CN", "zh-TW", "cs", "da", "nl", "en", "fi", "fr", "de", "el", "hu", "id", "it", "ja", "ko", "no", "pl", "pt", "pt-BR", "ro", "ru", "es", "es-419", "sv", "th", "tr", "uk", "vi"]
-    clear()
-    console.print("\n[bold]--- Change Language ---[/bold]")
-    for i, lang in enumerate(languages, 1):
-        console.print(f"{i}. {lang}")
-    choice = console.input("Select a language (or 'b' to go back): ")
-    if choice.lower() == 'b': return None
-    try:
-        index = int(choice) - 1
-        if 0 <= index < len(languages): return languages[index]
-    except ValueError: pass
-    console.print("[bold red]Invalid selection.[/bold red]")
-    return None
-
 def main():
     """Main function of the script."""
     if not check_internet_connection(): sys.exit(1)
     load_dotenv(dotenv_path=DOTENV_PATH)
     api_key = os.getenv("STEAM_API_KEY")
     steam_id = os.getenv("STEAM_USER_ID")
-    language = 'english'
+    language = 'english' # Keep for API calls, but not user-changeable
     if not api_key or not steam_id:
         clear()
         api_key = get_env_value("STEAM_API_KEY", "Steam API Key", "https://steamcommunity.com/dev/apikey")
         steam_id = get_env_value("STEAM_USER_ID", "Steam User ID", "https://steamid.io/", "[U:1:xxxxxxxxx]")
 
+    # Re-numbered and cleaned up menu items
     menu_items = {
         '-- Generation --': [
             ('1', 'Generate from SLSsteam config', handle_slssteam_list),
@@ -549,12 +500,11 @@ def main():
             ('5', 'Purge generated schemas', handle_purge_menu),
         ],
         '-- Settings --': [
-            ('6', 'Change Language', change_language),
-            ('7', 'Clear Credentials', handle_clear_credentials),
+            ('6', 'Clear Credentials', handle_clear_credentials),
         ],
         '-- Application --': [
-            ('8', 'Update', handle_update),
-            ('9', 'Uninstall', handle_uninstall),
+            ('7', 'Update', handle_update),
+            ('8', 'Uninstall', handle_uninstall),
         ]
     }
     
@@ -562,7 +512,7 @@ def main():
 
     while True:
         clear()
-        console.print(f"[bold]--- Steam Achievement Helper (Language: [cyan]{language}[/cyan]) ---[/bold]\n")
+        console.print(f"[bold]--- Steam Achievement Helper ---[/bold]\n")
 
         for header, items in menu_items.items():
             console.print(f"  [bold cyan]{header}[/bold cyan]")
@@ -576,13 +526,18 @@ def main():
 
         if choice in all_options:
             handler = all_options[choice]
-            if choice in ['1', '2', '3']: handler(api_key, steam_id, language)
-            elif choice == '6': handler(steam_id)
-            elif choice == '5': 
-                new_lang = change_language()
-                if new_lang: language = new_lang
-            else: handler()
-            if choice in ['7', '8', '9']: break
+            # Corrected handler calls
+            if choice in ['1', '2', '3']:
+                handler(api_key, steam_id, language)
+            elif choice == '5':
+                handler(steam_id) # Purge menu needs steam_id
+            elif choice in ['4', '6', '7', '8']:
+                handler()
+                if choice in ['6', '7', '8']: break # Exit after these actions
+            else:
+                # This case should ideally not be reached with the current structure
+                console.print("[bold red]Internal error: Unhandled option.[/bold red]")
+                console.input("\nPress Enter to continue.")
         else:
             console.print("[bold red]Invalid option.[/bold red]")
             console.input("\nPress Enter to continue.")
