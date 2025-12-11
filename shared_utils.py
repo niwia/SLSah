@@ -51,15 +51,13 @@ def get_env_value(key, prompt, help_url="", example=""):
 def read_cache():
     """Reads the app details cache file."""
     if not os.path.exists(CACHE_FILE_PATH):
-        # --- FIX: Changed {{}} to {} ---
-        return {{}}
+        return {}
     try:
         with open(CACHE_FILE_PATH, 'r') as f:
             return json.load(f)
     except (json.JSONDecodeError, Exception) as e:
         print(f"Warning: Could not read cache file. A new one will be created. Error: {e}")
-        # --- FIX: Changed {{}} to {} ---
-        return {{}}
+        return {}
 
 def write_cache(cache_data):
     """Writes data to the app details cache file."""
@@ -82,7 +80,7 @@ def get_app_details(app_id, cache):
         data = response.json()
         if app_id_str in data and data[app_id_str]['success']:
             app_data = data[app_id_str]['data']
-            details = {{'name': app_data.get('name', 'Unknown Name'), 'type': app_data.get('type', 'unknown')}}
+            details = {'name': app_data.get('name', 'Unknown Name'), 'type': app_data.get('type', 'unknown')}
             cache[app_id_str] = details
             return details, True
     except requests.exceptions.RequestException as e:
