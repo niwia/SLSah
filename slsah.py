@@ -133,10 +133,7 @@ def main():
     
     args = parser.parse_args()
     
-    # Handle version display
-    if args.version:
-        UI.print_version_info(__version__)
-        return
+    # Note: --version is handled automatically by argparse action='version'
     
     # Handle credential clearing
     if args.clear_credentials:
