@@ -1,19 +1,98 @@
-# Steam Schema Generator
+# SLS-AH (SLSsteam Achievement Helper)
 
-This tool allows you to generate `UserGameStatsSchema` and `UserGameStats` files for Steam games using the Steam Web API.
+A power-user's toolkit for Steam on Linux/Steamdeck, providing achievement schema generation and powerful integration with the `SLSsteam` client.
 
-## Features
+This tool helps you unlock achievements in games that do not have proper schema files and manage your `SLSsteam` configuration for an enhanced experience.
 
-*   **Interactive UI:** A simple and easy-to-use terminal interface.
-*   **Multiple Game Sources:** Generate schemas from your `SLSsteam` config, by scanning your Steam library, or by manual App ID input.
-*   **API Key & User ID Management:** Securely saves your Steam API key and User ID so you only have to enter them once.
-*   **Smart File Handling:** Intelligently handles existing files with options to overwrite, update (merge new achievements), or skip.
-*   **Game Name Display:** Shows the name of the game being processed.
-*   **Summary Report:** Provides a summary of the operations performed.
+**Version 2.0** - Now with encrypted credential storage, game search, and enhanced reliability!
 
-## Configuration
+---
 
-During the first run, the script will prompt you for your Steam Web API Key and your Steam User ID. These are saved in a local `.env` file in the script's directory, so you only need to enter them once.
+## Core Features
+
+*   **Achievement Schema Generation:**
+    *   Generate `UserGameStatsSchema` files for games by fetching data directly from the Steam Web API.
+    *   Interactive UI to select games from your library or enter App IDs manually.
+    *   **NEW:** Search for games by name - no need to know the App ID!
+    *   Smart file handling with options to overwrite, update, or skip existing files.
+    *   **NEW:** Automatic retry logic with exponential backoff for unreliable connections.
+*   **Secure Credential Management:**
+    *   **NEW:** AES-256-GCM encrypted credential storage (replaces plaintext .env files).
+    *   Automatic migration from old .env format.
+    *   Machine-specific encryption keys for enhanced security.
+*   **SLSsteam Config Manager:**
+    *   A full menu dedicated to managing your `SLSsteam` configuration (`~/.config/SLSsteam/config.yaml`).
+    *   Easily add or remove games from your `AdditionalApps` list.
+    *   Enable online multiplayer for certain games with an "Online Fix" feature.
+    *   **NEW:** Comprehensive guide with list of known compatible games.
+    *   Backup and restore your `SLSsteam` configuration.
+
+---
+
+## What's New in Version 2.0
+
+**🔐 Enhanced Security:**
+*   Credentials are now stored using AES-256-GCM encryption instead of plaintext .env files
+*   Automatic migration from old credential format
+*   Machine-specific encryption keys
+
+**🔍 Better Usability:**
+*   Search for games by name - no need to know App IDs!
+*   Improved UI with better visual feedback
+*   Version flag: `python slsah.py --version`
+
+**🔧 Improved Reliability:**
+*   Automatic retry logic with exponential backoff for API calls
+*   Better error handling and recovery
+*   Modular codebase for easier maintenance
+
+**📖 Better Documentation:**
+*   Comprehensive online fix guide with known compatible games
+*   Detailed troubleshooting information
+
+---
+
+## Installation
+
+### Easy Installer (Recommended)
+
+Run the following command in your terminal. This will download the tool, install dependencies, and create a desktop shortcut.
+
+```bash
+curl -L https://github.com/niwia/SLSah/raw/main/install.sh | sh
+```
+
+### Development Version
+
+To test the latest features from the `dev` branch, run this command. It will be installed in a separate directory (`~/steam-schema-generator-dev`).
+
+```bash
+curl -L https://github.com/niwia/SLSah/raw/dev/install_dev.sh | sh
+```
+
+---
+
+## Usage
+
+If you used the installer, you can launch the tool by double-clicking the "SLS-AH" icon on your desktop, or run:
+
+```bash
+python ~/steam-schema-generator/slsah.py
+```
+
+### Command Line Options
+
+```bash
+# Show version
+python slsah.py --version
+
+# Clear stored credentials
+python slsah.py --clear-credentials
+```
+
+### First Run
+
+On the first run, the script will prompt you for your **Steam Web API Key** and your **Steam User ID**. These are encrypted and securely stored locally.
 
 ### Steam Web API Key
 

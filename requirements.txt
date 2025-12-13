@@ -8,3 +8,4 @@ httpx
 tqdm
 pycryptodome
 rich
+tenacity
