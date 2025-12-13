@@ -2,7 +2,7 @@
 
 All notable changes to SLS-AH will be documented in this file.
 
-## [2.0.0] - 2025-12-13
+## [2.0d] - 2025-12-13 (Development Version)
 
 ### 🎉 Major Release - Complete Refactor
 
