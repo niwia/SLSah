@@ -42,13 +42,13 @@ deactivate
 chmod +x run.sh
 
 # Create the desktop shortcut for the dev version
-DESKTOP_SHORTCUT_PATH="$HOME/Desktop/steam-schema-generator-dev.desktop"
+DESKTOP_SHORTCUT_PATH="$HOME/Desktop/SLS-AH-Dev.desktop"
 echo "Creating dev desktop shortcut at $DESKTOP_SHORTCUT_PATH..."
 
 cat > "$DESKTOP_SHORTCUT_PATH" <<EOL
 [Desktop Entry]
-Name=Steam Schema Generator (Dev)
-Comment=Generate Steam schema files (Development Version)
+Name=SLS-AH (Dev)
+Comment=SLSsteam Achievement Helper v2.0 (Development Version)
 Exec=konsole -e "$INSTALL_DIR/run.sh"
 Icon=utilities-terminal
 Terminal=false
@@ -58,8 +58,11 @@ EOL
 
 chmod +x "$DESKTOP_SHORTCUT_PATH"
 
+
 echo "
 Dev installation complete!
 
-You can now run the Steam Schema Generator (Dev) by double-clicking the icon on your desktop.
+You can now run SLS-AH (Dev) by:
+- Double-clicking the 'SLS-AH (Dev)' icon on your desktop
+- Or running: cd $INSTALL_DIR && ./run.sh
 "
