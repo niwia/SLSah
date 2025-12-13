@@ -209,26 +209,33 @@ class SteamAPI:
             max_results: Maximum number of results to return
         
         Returns:
-            List of matching games with {app_id, name, type}
+            List of matching games with {appid, name, logo}
         """
-        # Steam doesn't have a direct search API, so we use the store search
-        url = "https://steamcommunity.com/actions/SearchApps/"
-        params = {'text': query}
+        # Use Steam Store search API (Community API is deprecated)
+        url = "https://store.steampowered.com/api/storesearch/"
+        params = {
+            'term': query,
+            'cc': 'US',
+            'l': 'english'
+        }
         
         try:
             self._wait_for_rate_limit()
             response = self.session.get(url, params=params, timeout=10)
             response.raise_for_status()
             
-            results = response.json()
+            data = response.json()
             
-            # Filter and format results
+            # Extract and format results
             games = []
-            for item in results[:max_results]:
+            items = data.get('items', [])
+            
+            for item in items[:max_results]:
+                # Only include actual games (type 'app'), skip DLC, music, etc. if possible
                 games.append({
-                    'appid': int(item['appid']),
+                    'appid': int(item['id']),
                     'name': item['name'],
-                    'logo': item.get('logo', '')
+                    'logo': item.get('tiny_image', '')
                 })
             
             return games
